@@ -14,7 +14,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
     <div className="space-y-0 pb-16 font-sans bg-[#F8F6F1] text-[#2B2B2B]">
 
       {/* ═══════════════════════════════════════════════════════
-          HERO SECTION WITH STAGGERED TEXT REVEAL ANIMATIONS
+          HERO SECTION WITH TEJENDRA PHOTO & STAGGERED ANIMATIONS
       ═══════════════════════════════════════════════════════ */}
       <section className="relative bg-[#1E3A8A] text-white py-16 sm:py-24 border-b-4 border-[#D4AF37] overflow-hidden">
         
@@ -24,7 +24,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            {/* Left Column: Text & Buttons with Staggered Entrance Animations */}
+            {/* Left Column: Text & Buttons */}
             <div className="lg:col-span-7 space-y-6">
               
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-widest animate-text delay-100">
@@ -32,23 +32,23 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
                 Professional Numerological Consulting
               </div>
 
-              {/* Main Headline Text Animation */}
+              {/* Main Headline */}
               <h1 className="text-4xl sm:text-6xl font-extrabold font-cinzel text-white tracking-tight leading-tight animate-text delay-200">
                 Numbers Speak. <br />
                 <span className="text-gold-gradient">We Decode. You Succeed.</span>
               </h1>
 
-              {/* Category Subheading Text Animation */}
+              {/* Category Subheading */}
               <p className="text-[#D4AF37] font-cinzel font-semibold text-lg sm:text-xl tracking-wide animate-text delay-300">
                 Corporate · Business · Career · Couples · Students · Parenting Numerology
               </p>
 
-              {/* Body Copy Text Animation */}
+              {/* Body Copy */}
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl font-poppins animate-text delay-400">
                 Unlock your cosmic blueprint with <strong>Tejendra Meena</strong>. Transform your personal energy, commercial enterprise, career milestones, and relationship harmony with high-vibration Chaldean & Pythagorean numerology.
               </p>
 
-              {/* Action Buttons Entrance Animation */}
+              {/* Action Buttons */}
               <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 animate-text delay-500">
                 <button
                   onClick={onOpenConsultation}
@@ -67,7 +67,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
                 </button>
               </div>
 
-              {/* Stats Bar Entrance Animation */}
+              {/* Stats Bar */}
               <div className="pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left animate-text delay-600">
                 <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/15">
                   <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">10,000+</div>
@@ -89,22 +89,30 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
 
             </div>
 
-            {/* Right Column: Tejendra Brand Profile Card Animation */}
+            {/* Right Column: Tejendra Brand Profile Card with Provided Photo */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end animate-text delay-300">
               <div className="w-full max-w-[400px] bg-white rounded-3xl p-6 sm:p-8 text-[#2B2B2B] shadow-2xl border-4 border-[#D4AF37] relative">
                 
-                <div className="w-20 h-20 rounded-2xl bg-[#1E3A8A] text-[#D4AF37] font-extrabold font-cinzel text-3xl flex items-center justify-center mx-auto mb-4 border-2 border-[#D4AF37]">
-                  TM
+                {/* TEJENDRA PHOTO */}
+                <div className="relative mb-4 flex justify-center">
+                  <img 
+                    src="/numerology pic.jpg" 
+                    alt="Tejendra Meena - Master Numerologist" 
+                    className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl object-cover object-top border-4 border-[#D4AF37] shadow-xl"
+                  />
+                  <div className="absolute -bottom-2 bg-[#1E3A8A] text-[#D4AF37] text-[10px] font-extrabold px-3 py-0.5 rounded-full border border-[#D4AF37] shadow">
+                    VERIFIED EXPERT
+                  </div>
                 </div>
 
-                <div className="text-center">
+                <div className="text-center pt-2">
                   <h3 className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
                     Tejendra Meena
                   </h3>
                   <p className="text-xs font-bold text-[#D4AF37] uppercase tracking-widest mt-1">
                     Master Numerologist & Business Strategist
                   </p>
-                  <p className="text-xs text-slate-600 mt-3 leading-relaxed">
+                  <p className="text-xs text-slate-600 mt-3 leading-relaxed italic">
                     "Numbers are not mere symbols; they are living planetary vibrations that shape your destiny, commercial prosperity, and relationship compatibility."
                   </p>
                 </div>
@@ -323,7 +331,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
 
         <div className="space-y-3">
           {faqList.map((item, idx) => (
-            <div key={idx} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+            <div key={idx} className="bg-[#FFFFFF] rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
               <button
                 onClick={() => setOpenFaq(openFaq === idx ? -1 : idx)}
                 className="w-full p-5 text-left font-bold text-slate-900 text-sm flex items-center justify-between gap-4 cursor-pointer"

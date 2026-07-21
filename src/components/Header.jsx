@@ -207,15 +207,22 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
         </div>
       </nav>
 
-      {/* ULTRA ATTRACTIVE MOBILE FULL SCREEN DRAWER MENU */}
+      {/* MOBILE FULL SCREEN DRAWER MENU WITH TEJENDRA FADED WATERMARK BACKGROUND */}
       {mobileOpen && (
         <div className="lg:hidden fixed inset-0 z-50 bg-[#F8F6F1] flex flex-col animate-fadeIn">
           
           {/* Drawer Top Header */}
-          <div className="p-4 border-b border-[#D4AF37]/30 flex items-center justify-between bg-[#1E3A8A] text-white shadow-md">
-            <div className="flex flex-col text-left">
-              <span className="text-lg font-extrabold font-cinzel text-white tracking-wider">NUMEROLOGY</span>
-              <span className="text-xs font-bold tracking-widest text-slate-200">by <span className="text-[#D4AF37]">TEJENDRA</span></span>
+          <div className="p-4 border-b border-[#D4AF37]/30 flex items-center justify-between bg-[#1E3A8A] text-white shadow-md z-10">
+            <div className="flex items-center gap-3">
+              <img 
+                src="/numerology pic.jpg" 
+                alt="Tejendra Meena" 
+                className="w-10 h-10 rounded-xl object-cover object-top border border-[#D4AF37]" 
+              />
+              <div className="flex flex-col text-left">
+                <span className="text-base font-extrabold font-cinzel text-white tracking-wider">NUMEROLOGY</span>
+                <span className="text-[10px] font-bold tracking-widest text-slate-200">by <span className="text-[#D4AF37]">TEJENDRA</span></span>
+              </div>
             </div>
             
             <button 
@@ -226,138 +233,149 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
             </button>
           </div>
 
-          {/* Drawer Menu Body */}
+          {/* Drawer Menu Body with Tejendra Watermark Image Background */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-5 relative space-y-3.5 text-left">
             
-            {/* User Session Pill in Drawer */}
-            <div className="bg-white p-3.5 rounded-2xl border border-[#D4AF37]/30 shadow-sm flex items-center justify-between">
-              <div>
-                <span className="text-[10px] uppercase font-bold text-[#D4AF37] block">Client Account</span>
-                <span className="text-xs font-extrabold text-[#1E3A8A]">
-                  {currentUser ? `👤 ${currentUser.name || 'Client'}` : 'Guest User'}
-                </span>
-              </div>
-              <button
-                onClick={() => go('login')}
-                className="px-3 py-1.5 bg-[#1E3A8A] text-[#D4AF37] text-xs font-bold rounded-xl flex items-center gap-1 cursor-pointer"
-              >
-                {currentUser ? 'My Account' : 'Sign In'}
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
+            {/* FADED WATERMARK IMAGE BACKGROUND OF TEJENDRA */}
+            <div 
+              className="absolute inset-0 bg-no-repeat bg-center bg-cover opacity-[0.09] pointer-events-none z-0" 
+              style={{ backgroundImage: "url('/numerology pic.jpg')" }}
+            />
 
-            {/* Navigation Cards List */}
-            <div className="space-y-2 font-medium text-slate-800 text-sm">
+            <div className="relative z-10 space-y-3.5">
               
-              <button 
-                onClick={() => go('home')} 
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between font-bold text-[#1E3A8A] cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-[#1E3A8A]/10 text-[#1E3A8A]">
-                    <Home className="w-4 h-4" />
-                  </div>
-                  <span>Home</span>
+              {/* User Session Pill in Drawer */}
+              <div className="bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-[#D4AF37]/30 shadow-sm flex items-center justify-between">
+                <div>
+                  <span className="text-[10px] uppercase font-bold text-[#D4AF37] block">Client Account</span>
+                  <span className="text-xs font-extrabold text-[#1E3A8A]">
+                    {currentUser ? `👤 ${currentUser.name || 'Client'}` : 'Guest User'}
+                  </span>
                 </div>
-                <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
-              </button>
-
-              <button 
-                onClick={() => go('about')} 
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-[#D4AF37]/15 text-[#D4AF37]">
-                    <User className="w-4 h-4" />
-                  </div>
-                  <span>About Tejendra</span>
-                </div>
-                <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
-              </button>
-
-              {/* Services Accordion Card */}
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
                 <button
-                  onClick={() => setMobileServicesOpen(v => !v)}
-                  className="w-full p-3.5 flex items-center justify-between text-left font-bold text-slate-900 cursor-pointer"
+                  onClick={() => go('login')}
+                  className="px-3 py-1.5 bg-[#1E3A8A] text-[#D4AF37] text-xs font-bold rounded-xl flex items-center gap-1 cursor-pointer"
+                >
+                  {currentUser ? 'My Account' : 'Sign In'}
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              {/* Navigation Cards List */}
+              <div className="space-y-2 font-medium text-slate-800 text-sm">
+                
+                <button 
+                  onClick={() => go('home')} 
+                  className="w-full p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-between font-bold text-[#1E3A8A] cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-xl bg-[#1E3A8A]/10 text-[#1E3A8A]">
-                      <Compass className="w-4 h-4" />
+                      <Home className="w-4 h-4" />
                     </div>
-                    <span>Services</span>
+                    <span>Home</span>
                   </div>
-                  <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
                 </button>
 
-                {mobileServicesOpen && (
-                  <div className="px-4 pb-3 pt-1 space-y-1.5 text-xs text-slate-700 border-t border-slate-100 bg-[#F8F6F1]">
-                    {servicesList.map(s => (
-                      <button 
-                        key={s.id} 
-                        onClick={() => go('services')} 
-                        className="block w-full text-left p-2 rounded-lg hover:bg-white font-bold text-[#1E3A8A] transition-colors"
-                      >
-                        • {s.title}
-                      </button>
-                    ))}
+                <button 
+                  onClick={() => go('about')} 
+                  className="w-full p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-[#D4AF37]/15 text-[#D4AF37]">
+                      <User className="w-4 h-4" />
+                    </div>
+                    <span>About Tejendra</span>
                   </div>
-                )}
+                  <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
+                </button>
+
+                {/* Services Accordion Card */}
+                <div className="bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                  <button
+                    onClick={() => setMobileServicesOpen(v => !v)}
+                    className="w-full p-3.5 flex items-center justify-between text-left font-bold text-slate-900 cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-xl bg-[#1E3A8A]/10 text-[#1E3A8A]">
+                        <Compass className="w-4 h-4" />
+                      </div>
+                      <span>Services</span>
+                    </div>
+                    <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {mobileServicesOpen && (
+                    <div className="px-4 pb-3 pt-1 space-y-1.5 text-xs text-slate-700 border-t border-slate-100 bg-[#F8F6F1]">
+                      {servicesList.map(s => (
+                        <button 
+                          key={s.id} 
+                          onClick={() => go('services')} 
+                          className="block w-full text-left p-2 rounded-lg hover:bg-white font-bold text-[#1E3A8A] transition-colors"
+                        >
+                          • {s.title}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <button 
+                  onClick={() => go('reports')} 
+                  className="w-full p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-[#D4AF37]/15 text-[#D4AF37]">
+                      <BookOpen className="w-4 h-4" />
+                    </div>
+                    <span>Numerology Reports</span>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
+                </button>
+
+                <button 
+                  onClick={() => go('calculator')} 
+                  className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-[#1E3A8A] to-[#0f2357] text-white border border-[#D4AF37]/40 shadow-md flex items-center justify-between font-bold cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-[#D4AF37]/20 text-[#D4AF37]">
+                      <Sparkles className="w-4 h-4" />
+                    </div>
+                    <span>Free Calculators</span>
+                  </div>
+                  <span className="text-[10px] font-extrabold bg-[#D4AF37] text-[#1E3A8A] px-2 py-0.5 rounded">FREE</span>
+                </button>
+
+                <button 
+                  onClick={() => go('signup')} 
+                  className="w-full p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600">
+                      <User className="w-4 h-4" />
+                    </div>
+                    <span>Register Account</span>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
+                </button>
+
+                <button 
+                  onClick={() => go('contact')} 
+                  className="w-full p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-[#1E3A8A]/10 text-[#1E3A8A]">
+                      <Phone className="w-4 h-4" />
+                    </div>
+                    <span>Contact Office</span>
+                  </div>
+                  <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
+                </button>
+
               </div>
 
-              <button 
-                onClick={() => go('reports')} 
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-[#D4AF37]/15 text-[#D4AF37]">
-                    <BookOpen className="w-4 h-4" />
-                  </div>
-                  <span>Numerology Reports</span>
-                </div>
-                <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
-              </button>
-
-              <button 
-                onClick={() => go('calculator')} 
-                className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-[#1E3A8A] to-[#0f2357] text-white border border-[#D4AF37]/40 shadow-md flex items-center justify-between font-bold cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-[#D4AF37]/20 text-[#D4AF37]">
-                    <Sparkles className="w-4 h-4" />
-                  </div>
-                  <span>Free Calculators</span>
-                </div>
-                <span className="text-[10px] font-extrabold bg-[#D4AF37] text-[#1E3A8A] px-2 py-0.5 rounded">FREE</span>
-              </button>
-
-              <button 
-                onClick={() => go('signup')} 
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600">
-                    <User className="w-4 h-4" />
-                  </div>
-                  <span>Register Account</span>
-                </div>
-                <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
-              </button>
-
-              <button 
-                onClick={() => go('contact')} 
-                className="w-full p-3.5 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-xl bg-[#1E3A8A]/10 text-[#1E3A8A]">
-                    <Phone className="w-4 h-4" />
-                  </div>
-                  <span>Contact Office</span>
-                </div>
-                <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
-              </button>
-
             </div>
+
           </div>
 
           {/* STICKY BOTTOM DUAL ACTION BUTTONS FOR MOBILE */}
