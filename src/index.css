@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@theme {
+  --color-royal-blue: #1E3A8A;
+  --color-[#1E3A8A]: #1E3A8A;
+  --color-gold: #D4AF37;
+  --color-[#D4AF37]: #D4AF37;
+  --color-ivory: #F8F6F1;
+  --color-[#F8F6F1]: #F8F6F1;
+  --color-charcoal: #2B2B2B;
+  --color-[#2B2B2B]: #2B2B2B;
+
+  --font-serif: 'Cinzel', 'Cormorant Garamond', serif;
+  --font-[#Cinzel]: 'Cinzel', serif;
+  --font-garamond: 'Cormorant Garamond', serif;
+  --font-sans: 'Poppins', 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    background-color: #F8F6F1;
+    color: #2B2B2B;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  }
+
+  ::selection {
+    background-color: #1E3A8A;
+    color: #FFFFFF;
+  }
+}
+
+/* Smooth Page & Text Reveal Keyframe Animations */
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes pageEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-entrance {
+  animation: pageEntrance 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-text {
+  opacity: 0;
+  animation: textReveal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+
+@layer utilities {
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  
+  .font-garamond {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .font-poppins {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Primary Gold Button */
+  .btn-primary {
+    background-color: #D4AF37;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    border-radius: 9px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+  }
+
+  .btn-primary:hover {
+    background-color: #c49f2b;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /* Secondary Blue Border Button */
+  .btn-secondary {
+    background-color: #FFFFFF;
+    border: 2px solid #1E3A8A;
+    color: #1E3A8A;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    border-radius: 9px;
+    transition: all 0.25s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: #1E3A8A;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(30, 58, 138, 0.2);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(0);
+  }
+
+  /* Luxury Gold Text Gradient */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #AA8618 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-royal-gradient {
+    background: linear-gradient(135deg, #0f2357 0%, #1E3A8A 50%, #2A4AA1 100%);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+  }
+}
