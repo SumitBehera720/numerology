@@ -1,6 +1,7 @@
 import React from 'react';
 import { BookOpen, Calendar, ArrowRight, ShieldCheck } from 'lucide-react';
 import { reportsCatalog } from '../data/tejendraData';
+import SolarSystemBackground from '../components/SolarSystemBackground';
 
 export default function ReportsPage({ onOpenConsultation }) {
   return (
@@ -8,13 +9,16 @@ export default function ReportsPage({ onOpenConsultation }) {
       <div className="max-w-7xl mx-auto space-y-12">
         
         {/* Banner */}
-        <div className="bg-[#1E3A8A] text-white rounded-3xl p-8 sm:p-14 shadow-2xl border-2 border-[#D4AF37]/30 text-center">
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-white">
-            Numerology Reports Catalog
-          </h1>
-          <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-2xl mx-auto">
-            Order custom 15–25 page PDF reports calculated specifically for your birth date and name numbers.
-          </p>
+        <div className="bg-[#1E3A8A] text-white rounded-3xl p-8 sm:p-14 shadow-2xl border-2 border-[#D4AF37]/30 text-center relative overflow-hidden">
+          <SolarSystemBackground />
+          <div className="relative z-10 w-full">
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-white">
+              Numerology Reports Catalog
+            </h1>
+            <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-2xl mx-auto">
+              Order custom 15–25 page PDF reports calculated specifically for your birth date and name numbers.
+            </p>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

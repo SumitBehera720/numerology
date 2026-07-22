@@ -12,6 +12,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import AdminPanel from './pages/AdminPanel';
 import FreeCalculators from './components/FreeCalculators';
+import PoliciesPage from './pages/PoliciesPage';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -101,6 +102,12 @@ export default function App() {
             setActiveTab={setActiveTab} 
             currentUser={currentUser}
             setCurrentUser={setCurrentUser}
+          />
+        )}
+
+        {activeTab === 'policies' && (
+          <PoliciesPage 
+            onOpenConsultation={handleOpenConsultation}
           />
         )}
 

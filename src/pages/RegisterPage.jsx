@@ -247,8 +247,8 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
                 />
                 <label htmlFor="agreeTerms" className="text-[11px] text-slate-700 leading-tight">
                   I agree to receive communication from Numerology by Tejendra via text messaging. Communication will be occasional as required and no spam will be sent. View{' '}
-                  <button type="button" onClick={() => setActiveTab('contact')} className="text-[#1E3A8A] underline font-bold">Terms & conditions</button> and{' '}
-                  <button type="button" onClick={() => setActiveTab('contact')} className="text-[#1E3A8A] underline font-bold">Privacy Policy</button>.
+                  <button type="button" onClick={() => setActiveTab('policies')} className="text-[#1E3A8A] underline font-bold">Terms & conditions</button> and{' '}
+                  <button type="button" onClick={() => setActiveTab('policies')} className="text-[#1E3A8A] underline font-bold">Privacy Policy</button>.
                 </label>
               </div>
 

@@ -3,8 +3,8 @@
 @theme {
   --color-royal-blue: #1E3A8A;
   --color-[#1E3A8A]: #1E3A8A;
-  --color-gold: #D4AF37;
-  --color-[#D4AF37]: #D4AF37;
+  --color-gold: #C59B27;
+  --color-[#D4AF37]: #C59B27;
   --color-ivory: #F8F6F1;
   --color-[#F8F6F1]: #F8F6F1;
   --color-charcoal: #2B2B2B;
@@ -95,19 +95,19 @@
 
   /* Primary Gold Button */
   .btn-primary {
-    background-color: #D4AF37;
+    background-color: #C59B27;
     color: #FFFFFF;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     border-radius: 9px;
     transition: all 0.25s ease;
-    box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+    box-shadow: 0 4px 14px rgba(197, 155, 39, 0.35);
   }
 
   .btn-primary:hover {
-    background-color: #c49f2b;
+    background-color: #A9801A;
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+    box-shadow: 0 6px 20px rgba(197, 155, 39, 0.45);
   }
 
   .btn-primary:active {
@@ -138,7 +138,7 @@
 
   /* Luxury Gold Text Gradient */
   .text-gold-gradient {
-    background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #AA8618 100%);
+    background: linear-gradient(135deg, #DFB13D 0%, #C59B27 50%, #8A640F 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -152,4 +152,48 @@
     backdrop-filter: blur(12px);
     border: 1px solid rgba(212, 175, 55, 0.25);
   }
+}
+
+/* Mystical Numerology Floating Particles & Cosmic Gradient */
+@keyframes floatNumber {
+  0% {
+    transform: translateY(110%) rotate(0deg) scale(0.7);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.35;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-20%) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes starsTwinkle {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.2);
+  }
+}
+
+.celestial-twinkle {
+  animation: starsTwinkle ease-in-out infinite alternate;
+}
+
+.float-number-ani {
+  position: absolute;
+  animation: floatNumber linear infinite;
+  will-change: transform, opacity;
+  text-shadow: 0 0 10px rgba(197, 155, 39, 0.4), 0 0 20px rgba(197, 155, 39, 0.2);
+}
+
+.bg-cosmic-gradient {
+  background: linear-gradient(135deg, #09031a 0%, #120831 40%, #1c0a46 80%, #09031a 100%);
 }

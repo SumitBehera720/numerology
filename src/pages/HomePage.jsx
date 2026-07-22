@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { 
   Sparkles, Calendar, CheckCircle2, ArrowRight, ShieldCheck, 
-  Award, Heart, BookOpen, Star, HelpCircle, Phone, Mail
+  Award, Heart, BookOpen, Star, HelpCircle, Phone, Mail,
+  Instagram, Facebook, Youtube, Linkedin
 } from 'lucide-react';
 import { brandInfo, servicesList, reportsCatalog, testimonialsList, faqList } from '../data/tejendraData';
 import FreeCalculators from '../components/FreeCalculators';
 import { ScrollReveal } from '../hooks/useScrollReveal';
+import SolarSystemBackground from '../components/SolarSystemBackground';
 
 export default function HomePage({ onOpenConsultation, setActiveTab }) {
   const [openFaq, setOpenFaq] = useState(0);
@@ -18,8 +20,8 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
       ═══════════════════════════════════════════════════════ */}
       <section className="relative bg-[#1E3A8A] text-white py-16 sm:py-24 border-b-4 border-[#D4AF37] overflow-hidden">
         
-        {/* Subtle Background Glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(212,175,55,0.15),transparent_70%)] pointer-events-none" />
+        {/* 3D Celestial Solar System Background */}
+        <SolarSystemBackground />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -96,7 +98,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
                 {/* TEJENDRA PHOTO */}
                 <div className="relative mb-4 flex justify-center">
                   <img 
-                    src="/numerology pic.jpg" 
+                    src="/tejendra_new.jpeg" 
                     alt="Tejendra Meena - Master Numerologist" 
                     className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl object-cover object-top border-4 border-[#D4AF37] shadow-xl"
                   />
@@ -157,70 +159,74 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
       {/* ═══════════════════════════════════════════════════════
           SERVICES CATALOG
       ═══════════════════════════════════════════════════════ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <ScrollReveal>
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-[#1E3A8A] font-extrabold text-xs uppercase tracking-widest bg-[#D4AF37]/15 px-4 py-1.5 rounded-full border border-[#D4AF37]/30">
-              Tailored Consulting Domains
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-[#1E3A8A] mt-4">
-              Our Numerology Services
-            </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2 font-poppins">
-              Corporate, Business, Career, Couples & Relationship, Students, and Parenting Numerology.
-            </p>
-          </div>
-        </ScrollReveal>
+      <section className="relative bg-[#09031a] text-white py-20 border-y border-[#C59B27]/10 overflow-hidden">
+        <SolarSystemBackground />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ScrollReveal>
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <span className="text-[#C59B27] font-extrabold text-xs uppercase tracking-widest bg-[#C59B27]/10 px-4 py-1.5 rounded-full border border-[#C59B27]/30">
+                Tailored Consulting Domains
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-white mt-4">
+                Our Numerology Services
+              </h2>
+              <p className="text-slate-300 text-sm sm:text-base mt-2 font-poppins">
+                Corporate, Business, Career, Couples & Relationship, Students, and Parenting Numerology.
+              </p>
+            </div>
+          </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesList.map((service, index) => (
-            <ScrollReveal key={service.id} delay={index * 80}>
-              <div className="bg-white rounded-3xl p-7 shadow-lg border border-[#D4AF37]/30 hover:border-[#1E3A8A] transition-all flex flex-col justify-between text-left group h-full">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-extrabold bg-[#1E3A8A] text-[#D4AF37] px-3 py-1 rounded-full">
-                      {service.badge}
-                    </span>
-                    <span className="text-base font-extrabold font-cinzel text-[#1E3A8A]">
-                      {service.price}
-                    </span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {servicesList.map((service, index) => (
+              <ScrollReveal key={service.id} delay={index * 80}>
+                <div className="bg-white/5 backdrop-blur-md rounded-3xl p-7 shadow-lg border border-white/10 hover:border-[#C59B27]/50 transition-all flex flex-col justify-between text-left group h-full">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-black bg-[#C59B27] text-slate-950 px-3 py-1 rounded-full">
+                        {service.badge}
+                      </span>
+                      <span className="text-base font-extrabold font-cinzel text-[#C59B27]">
+                        {service.price}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold font-cinzel text-white group-hover:text-[#C59B27] transition-colors mb-2">
+                      {service.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                      {service.shortDesc}
+                    </p>
+
+                    <ul className="space-y-2 border-t border-white/10 pt-4 mb-6">
+                      {service.benefits.map((b, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-xs text-slate-200 font-semibold">
+                          <CheckCircle2 className="w-4 h-4 text-[#C59B27] shrink-0 mt-0.5" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
 
-                  <h3 className="text-xl font-bold font-cinzel text-slate-900 group-hover:text-[#1E3A8A] transition-colors mb-2">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                    {service.shortDesc}
-                  </p>
-
-                  <ul className="space-y-2 border-t border-slate-100 pt-4 mb-6">
-                    {service.benefits.map((b, idx) => (
-                      <li key={idx} className="flex items-start gap-2 text-xs text-slate-700 font-semibold">
-                        <CheckCircle2 className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={onOpenConsultation}
+                      className="btn-primary flex-1 py-3 text-xs font-extrabold cursor-pointer"
+                    >
+                      Book Consultation
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('services')}
+                      className="bg-transparent border-2 border-white/20 text-white hover:bg-white hover:text-slate-950 py-3 px-4 text-xs font-bold rounded-xl transition-all cursor-pointer"
+                    >
+                      Details
+                    </button>
+                  </div>
                 </div>
-
-                <div className="flex gap-2">
-                  <button
-                    onClick={onOpenConsultation}
-                    className="btn-primary flex-1 py-3 text-xs font-extrabold cursor-pointer"
-                  >
-                    Book Consultation
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('services')}
-                    className="btn-secondary py-3 px-4 text-xs font-bold cursor-pointer"
-                  >
-                    Details
-                  </button>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -280,40 +286,115 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
       {/* ═══════════════════════════════════════════════════════
           CLIENT TESTIMONIALS
       ═══════════════════════════════════════════════════════ */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <ScrollReveal>
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-[#1E3A8A] font-extrabold text-xs uppercase tracking-widest bg-[#D4AF37]/15 px-4 py-1.5 rounded-full">
-              Real Success Stories
-            </span>
-            <h2 className="text-3xl font-extrabold font-cinzel text-[#1E3A8A] mt-3">
-              What Our Clients Say
-            </h2>
-          </div>
-        </ScrollReveal>
+      <section className="relative bg-[#09031a] text-white py-20 border-y border-[#C59B27]/10 overflow-hidden">
+        <SolarSystemBackground />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="text-[#C59B27] font-extrabold text-xs uppercase tracking-widest bg-[#C59B27]/10 px-4 py-1.5 rounded-full border border-[#C59B27]/30">
+                Real Success Stories
+              </span>
+              <h2 className="text-3xl font-extrabold font-cinzel text-white mt-3">
+                What Our Clients Say
+              </h2>
+            </div>
+          </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-          {testimonialsList.map((t, idx) => (
-            <ScrollReveal key={idx} delay={idx * 100}>
-              <div className="bg-white rounded-3xl p-7 shadow-md border border-slate-200 space-y-4">
-                <div className="flex items-center gap-1 text-[#D4AF37]">
-                  {[...Array(t.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#D4AF37]" />
-                  ))}
-                </div>
-                <p className="text-xs sm:text-sm text-slate-700 italic leading-relaxed">
-                  "{t.text}"
-                </p>
-                <div className="border-t border-slate-100 pt-3 flex items-center justify-between text-xs">
-                  <div>
-                    <strong className="text-[#1E3A8A] font-bold block">{t.name}</strong>
-                    <span className="text-slate-500">{t.role}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+            {testimonialsList.map((t, idx) => (
+              <ScrollReveal key={idx} delay={idx * 100}>
+                <div className="bg-white/5 backdrop-blur-md rounded-3xl p-7 shadow-md border border-white/10 space-y-4 flex flex-col justify-between h-full hover:border-[#C59B27]/40 transition-all">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-1 text-[#C59B27]">
+                      {[...Array(t.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-[#C59B27] stroke-[#C59B27]" />
+                      ))}
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-200 italic leading-relaxed whitespace-pre-line">
+                      "{t.text}"
+                    </p>
                   </div>
-                  <span className="text-slate-400 font-semibold">{t.location}</span>
+                  
+                  <div className="border-t border-white/10 pt-4 flex items-center gap-3.5 text-xs mt-2">
+                    {t.image ? (
+                      <img 
+                        src={t.image} 
+                        alt={t.name} 
+                        className="w-11 h-11 rounded-full object-cover border-2 border-[#C59B27] shrink-0" 
+                      />
+                    ) : (
+                      <div className="w-11 h-11 rounded-full bg-white/10 border-2 border-white/20 flex items-center justify-center font-bold text-[#C59B27] shrink-0">
+                        {t.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()}
+                      </div>
+                    )}
+                    <div className="flex-1">
+                      <strong className="text-white font-bold block text-sm">{t.name}</strong>
+                      <span className="text-slate-400 font-medium">{t.role}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          FOLLOW US SECTION
+      ═══════════════════════════════════════════════════════ */}
+      <section className="bg-white py-16 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <ScrollReveal>
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] text-xs font-bold uppercase tracking-widest">
+              Stay Connected
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-cinzel text-[#1E3A8A] mt-3">
+              Follow Our Journey
+            </h2>
+            <p className="text-slate-600 text-sm max-w-xl mx-auto font-medium">
+              Join our growing community on social media for daily numerology tips, cosmic insights, spelling optimization guidelines, and success stories.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-4 pt-6">
+              <a 
+                href={brandInfo.socials.instagram} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2.5 px-6 py-3.5 bg-[#F8F6F1] border border-slate-200 hover:border-[#D4AF37] rounded-2xl shadow-sm text-sm font-bold text-slate-800 transition-all hover:-translate-y-0.5 cursor-pointer"
+              >
+                <Instagram className="w-5 h-5 text-[#E1306C]" />
+                <span>Instagram</span>
+              </a>
+              <a 
+                href={brandInfo.socials.facebook} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2.5 px-6 py-3.5 bg-[#F8F6F1] border border-slate-200 hover:border-[#D4AF37] rounded-2xl shadow-sm text-sm font-bold text-slate-800 transition-all hover:-translate-y-0.5 cursor-pointer"
+              >
+                <Facebook className="w-5 h-5 text-[#1877F2]" />
+                <span>Facebook</span>
+              </a>
+              <a 
+                href={brandInfo.socials.youtube} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2.5 px-6 py-3.5 bg-[#F8F6F1] border border-slate-200 hover:border-[#D4AF37] rounded-2xl shadow-sm text-sm font-bold text-slate-800 transition-all hover:-translate-y-0.5 cursor-pointer"
+              >
+                <Youtube className="w-5 h-5 text-[#FF0000]" />
+                <span>YouTube</span>
+              </a>
+              <a 
+                href={brandInfo.socials.linkedin} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center gap-2.5 px-6 py-3.5 bg-[#F8F6F1] border border-slate-200 hover:border-[#D4AF37] rounded-2xl shadow-sm text-sm font-bold text-slate-800 transition-all hover:-translate-y-0.5 cursor-pointer"
+              >
+                <Linkedin className="w-5 h-5 text-[#0A66C2]" />
+                <span>LinkedIn</span>
+              </a>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

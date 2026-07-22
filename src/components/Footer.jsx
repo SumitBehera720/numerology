@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, Sparkles, ShieldCheck, User, Calendar, LogIn, Lock } from 'lucide-react';
+import { Phone, Mail, Sparkles, ShieldCheck, User, Calendar, LogIn, Lock, Instagram, Facebook, Youtube, Linkedin } from 'lucide-react';
 import { brandInfo, servicesList } from '../data/tejendraData';
 
 export default function Footer({ setActiveTab, onOpenConsultation }) {
@@ -11,13 +11,20 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
           
           {/* Column 1: Brand Logo & Tagline */}
           <div className="space-y-4">
-            <div className="flex flex-col leading-none">
-              <span className="text-2xl font-extrabold font-cinzel text-white tracking-widest">
-                NUMEROLOGY
-              </span>
-              <span className="text-xs font-bold tracking-widest uppercase mt-0.5 text-slate-300">
-                by <span className="text-[#D4AF37] font-extrabold font-cinzel">TEJENDRA</span>
-              </span>
+            <div className="flex items-center gap-2.5">
+              <img 
+                src="/logo.jpeg" 
+                alt="Numerology by Tejendra Logo" 
+                className="w-10 h-10 rounded-xl object-cover border border-[#D4AF37]/30 shadow-sm"
+              />
+              <div className="flex flex-col leading-none">
+                <span className="text-xl font-extrabold font-cinzel text-white tracking-widest">
+                  NUMEROLOGY
+                </span>
+                <span className="text-[10px] font-bold tracking-widest uppercase mt-0.5 text-slate-300">
+                  by <span className="text-[#D4AF37] font-extrabold font-cinzel">TEJENDRA</span>
+                </span>
+              </div>
             </div>
 
             <p className="text-xs text-[#D4AF37] font-cinzel font-semibold tracking-wide">
@@ -27,6 +34,25 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
             <p className="text-xs text-slate-300 leading-relaxed">
               Professional Corporate, Business, Career, Couples, Students, and Parenting Numerology guidance by Tejendra Meena.
             </p>
+
+            {/* Follow Us Row */}
+            <div className="space-y-2 pt-2">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">Follow Us</span>
+              <div className="flex items-center gap-2">
+                <a href={brandInfo.socials.instagram} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 hover:bg-[#D4AF37] hover:text-white rounded-full transition-all cursor-pointer" title="Instagram">
+                  <Instagram className="w-4 h-4 text-white" />
+                </a>
+                <a href={brandInfo.socials.facebook} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 hover:bg-[#D4AF37] hover:text-white rounded-full transition-all cursor-pointer" title="Facebook">
+                  <Facebook className="w-4 h-4 text-white" />
+                </a>
+                <a href={brandInfo.socials.youtube} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 hover:bg-[#D4AF37] hover:text-white rounded-full transition-all cursor-pointer" title="YouTube">
+                  <Youtube className="w-4 h-4 text-white" />
+                </a>
+                <a href={brandInfo.socials.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 hover:bg-[#D4AF37] hover:text-white rounded-full transition-all cursor-pointer" title="LinkedIn">
+                  <Linkedin className="w-4 h-4 text-white" />
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Column 2: Navigation Links */}
@@ -87,7 +113,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
 
           {/* Column 4: Contact & Deposit Details */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-[#D4AF37] font-[#D4AF37] font-cinzel uppercase tracking-wider mb-4 border-l-2 border-[#D4AF37] pl-2.5">
+            <h4 className="text-sm font-bold text-[#D4AF37] font-cinzel uppercase tracking-wider mb-4 border-l-2 border-[#D4AF37] pl-2.5">
               Direct Contact
             </h4>
             
@@ -104,7 +130,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
 
               <div className="p-3 bg-white/10 rounded-xl border border-[#D4AF37]/30 text-[11px] leading-relaxed">
                 <span className="font-bold text-[#D4AF37] block mb-0.5">Booking Payment terms:</span>
-                Advance payment 20% @ ₹1,000 | Total project cost @ ₹5,000
+                Advance booking deposit of 20% (varies by service starting from ₹400 up to ₹1,000) is required to secure your slot. All bookings are non-refundable.
               </div>
             </div>
           </div>
@@ -115,11 +141,11 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300">
           <p>© {new Date().getFullYear()} Numerology by Tejendra. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
-            <button onClick={() => setActiveTab('contact')} className="hover:text-[#D4AF37] transition-colors">Privacy Policy</button>
+            <button onClick={() => setActiveTab('policies')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">Privacy Policy</button>
             <span>•</span>
-            <button onClick={() => setActiveTab('contact')} className="hover:text-[#D4AF37] transition-colors">Terms & Conditions</button>
+            <button onClick={() => setActiveTab('policies')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">Terms & Conditions</button>
             <span>•</span>
-            <button onClick={onOpenConsultation} className="text-[#D4AF37] font-bold hover:underline">Book Consultation</button>
+            <button onClick={onOpenConsultation} className="text-[#D4AF37] font-bold hover:underline cursor-pointer">Book Consultation</button>
           </div>
         </div>
 

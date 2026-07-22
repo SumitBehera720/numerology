@@ -9,11 +9,12 @@ export const brandInfo = {
   consultationFee: "₹1,000 (20% Advance)",
   totalFee: "₹5,000 Total Project / Consultation",
   location: "India & Global Online Consultations",
-  experience: "10+ Years Numerological Consulting",
+  experience: "11+ Years Numerological Consulting",
   socials: {
     instagram: "https://instagram.com/numerologybytejendra",
     youtube: "https://youtube.com/@numerologybytejendra",
     facebook: "https://facebook.com/numerologybytejendra",
+    linkedin: "https://linkedin.com/company/numerologybytejendra",
     whatsapp: "https://wa.me/918107241463"
   }
 };
@@ -31,7 +32,7 @@ export const servicesList = [
       "Executive Board Compatibility Analysis",
       "Financial Growth & Wealth Number Tuning"
     ],
-    price: "₹5,000"
+    price: "₹4,999"
   },
   {
     id: "business-numerology",
@@ -45,21 +46,7 @@ export const servicesList = [
       "Bank Account & Document Number Selection",
       "Store / Office Location Address Vibration"
     ],
-    price: "₹3,500"
-  },
-  {
-    id: "career-numerology",
-    title: "Career Numerology",
-    badge: "High Impact",
-    shortDesc: "Discover favorable promotion windows, job transition periods, ideal industry domains, and personal power numbers.",
-    fullDesc: "Career Numerology provides a accurate blueprint of your professional timeline. Identify peak success years, avoid stagnation, and choose career paths aligned with your birth grid.",
-    benefits: [
-      "Job Change & Promotion Timing",
-      "Best Suited Profession & Skill Domain",
-      "Interview & Deal Closing Favorable Dates",
-      "Overcoming Professional Stagnation"
-    ],
-    price: "₹2,500"
+    price: "₹3,999"
   },
   {
     id: "couples-relationship-numerology",
@@ -73,21 +60,21 @@ export const servicesList = [
       "Friction Resolution & Communication Tuning",
       "Long-term Relationship Stability Guidance"
     ],
-    price: "₹3,000"
+    price: "₹3,499"
   },
   {
-    id: "students-numerology",
-    title: "Students Numerology",
-    badge: "Academic Focus",
-    shortDesc: "Guide students toward their natural academic strengths, competitive exam timing, and optimal study direction.",
-    fullDesc: "Tailored guidance for school and college students to boost focus, select the right stream (Engineering, Medicine, Arts, Management), and maximize competitive exam results.",
+    id: "career-numerology",
+    title: "Career Numerology",
+    badge: "High Impact",
+    shortDesc: "Discover favorable promotion windows, job transition periods, ideal industry domains, and personal power numbers.",
+    fullDesc: "Career Numerology provides a accurate blueprint of your professional timeline. Identify peak success years, avoid stagnation, and choose career paths aligned with your birth grid.",
     benefits: [
-      "Stream Selection (STEM, Commerce, Arts)",
-      "Competitive Exam Luck & Focus Numbers",
-      "Study Room Direction & Desk Alignment",
-      "Exam Confidence & Memory Enhancement"
+      "Job Change & Promotion Timing",
+      "Best Suited Profession & Skill Domain",
+      "Interview & Deal Closing Favorable Dates",
+      "Overcoming Professional Stagnation"
     ],
-    price: "₹2,000"
+    price: "₹2,999"
   },
   {
     id: "parenting-numerology",
@@ -101,7 +88,21 @@ export const servicesList = [
       "Parent-Child Bonding Optimization",
       "Early Childhood Growth Guidance"
     ],
-    price: "₹2,500"
+    price: "₹2,499"
+  },
+  {
+    id: "students-numerology",
+    title: "Students Numerology",
+    badge: "Academic Focus",
+    shortDesc: "Guide students toward their natural academic strengths, competitive exam timing, and optimal study direction.",
+    fullDesc: "Tailored guidance for school and college students to boost focus, select the right stream (Engineering, Medicine, Arts, Management), and maximize competitive exam results.",
+    benefits: [
+      "Stream Selection (STEM, Commerce, Arts)",
+      "Competitive Exam Luck & Focus Numbers",
+      "Study Room Direction & Desk Alignment",
+      "Exam Confidence & Memory Enhancement"
+    ],
+    price: "₹1,999"
   }
 ];
 
@@ -142,32 +143,32 @@ export const reportsCatalog = [
 
 export const testimonialsList = [
   {
-    name: "Rajesh Kulkarni",
-    role: "Managing Director, Kulkarni Logistics",
-    location: "Mumbai",
+    name: "Abhishek Kumar Gupta",
+    role: "KV Teacher",
     rating: 5,
-    text: "Tejendra Ji corrected our company name spelling from Kulkarni Logistics to Kulkarnii Logistics. Within 4 months, we secured our largest government contract! Truly remarkable accuracy."
+    text: "Mr. Tejendra has deep knowledge of Numerology. He tells about the person in great details. I have met many numerologists and found him one of the best among them.",
+    image: "/Abhishek Gupta.jpeg"
   },
   {
-    name: "Priyanka & Vikram Sharma",
-    role: "IT Professionals",
-    location: "Bengaluru",
+    name: "Bhavya Rohit",
+    role: "MBBS, PG NEET Student",
     rating: 5,
-    text: "We consulted Tejendra Meena for our wedding date selection and couples compatibility. His spiritual insight and practical explanations gave us absolute clarity."
+    text: "Amazing numerology consultation! The insights were accurate, practical, and gave me a fresh perspective on my life. Highly professional and truly recommended for anyone seeking genuine guidance.",
+    image: ""
   },
   {
-    name: "Amitabh Verma",
-    role: "Tech Startup Founder",
-    location: "Delhi NCR",
+    name: "Mr Abhishek Srivastav",
+    role: "AGM - Sales & Marketing Noida",
     rating: 5,
-    text: "Corporate Numerology by Tejendra helped us select our mobile app launch date and brand logo color. His professionalism and high trust advice are second to none."
+    text: "Mr. Tejendra Meena is an exceptional Numerologist whose wisdom, insight, and dedication have positively impacted the lives of countless individuals. His deep understanding of numerology, combined with his ability to provide practical guidance, makes him a trusted mentor and advisor. What truly sets Mr. Tejendra Meena apart is his genuine commitment to helping people discover clarity, purpose, and direction in their personal and professional journeys. His predictions and consultations are not only insightful but also empowering, enabling individuals to make informed decisions with confidence. Beyond his expertise, Mr. Meena is admired for his humility, professionalism, and compassionate approach. His ability to connect with people and simplify complex numerological concepts reflects his mastery of the subject and his passion for serving others. It is a privilege to know and learn from a personality like Mr. Tejendra Meena. His remarkable work continues to inspire, guide, and transform lives. Wishing him continued success, recognition, and the opportunity to touch many more lives through his exceptional knowledge and service.",
+    image: "/Abhishek Srivastav.jpeg"
   },
   {
-    name: "Sunita Meena",
-    role: "Parent",
-    location: "Jaipur",
+    name: "Gaurav Kushwaha",
+    role: "NEET Student",
     rating: 5,
-    text: "We got our newborn son's name selected through Tejendra Ji's Parenting Numerology service. The entire process was smooth, scientific, and deeply satisfying."
+    text: "Very helpful and incredibly accurate in predicting many aspects of my life. Tejendra Meena Sir not only identified my strengths and areas for improvement but also patiently and thoughtfully counselled me on how to work on them. His guidance was practical, insightful, and reassuring. It was truly one of the best one-hour sessions of my life. I highly recommend Numerology by Tejendra to anyone seeking clarity, direction, and personal growth.",
+    image: "/Gaurav.jpeg"
   }
 ];
 
@@ -186,7 +187,7 @@ export const faqList = [
   },
   {
     q: "How do I book a consultation and what is the payment process?",
-    a: "You can book directly on our website or over WhatsApp. We accept a 20% advance booking deposit (₹1,000) to confirm your priority consultation slot, with the remaining balance due upon report delivery."
+    a: "You can book directly on our website or over WhatsApp. We accept a 20% advance booking deposit to confirm your priority consultation slot, with the remaining balance due upon report delivery."
   }
 ];
 
@@ -222,9 +223,9 @@ const SEED_BOOKINGS = [
     dob: '1982-05-14',
     service: 'Corporate Numerology',
     date: '2026-07-25',
-    timeSlot: '11:00 AM - 01:00 PM',
+    timeSlot: '07:00 AM - 08:30 AM',
     advanceDeposit: '₹1,000 (20%)',
-    totalFee: '₹5,000',
+    totalFee: '₹4,999',
     status: 'Deposit Pending WhatsApp',
     createdAt: '2026-07-21T11:20:00.000Z'
   }

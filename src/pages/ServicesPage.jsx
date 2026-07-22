@@ -1,6 +1,7 @@
 import React from 'react';
 import { CheckCircle2, Calendar, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { servicesList, brandInfo } from '../data/tejendraData';
+import SolarSystemBackground from '../components/SolarSystemBackground';
 
 export default function ServicesPage({ onOpenConsultation }) {
   return (
@@ -9,16 +10,19 @@ export default function ServicesPage({ onOpenConsultation }) {
         
         {/* Banner with Staggered Text Animations */}
         <div className="bg-[#1E3A8A] text-white rounded-3xl p-8 sm:p-14 shadow-2xl border-2 border-[#D4AF37]/30 text-center relative overflow-hidden">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-3 animate-text delay-100">
-            <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-            Consulting Categories
+          <SolarSystemBackground />
+          <div className="relative z-10 w-full">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-widest mb-3 animate-text delay-100">
+              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+              Consulting Categories
+            </div>
+            <h1 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-white animate-text delay-200">
+              Numerology Consultation Services
+            </h1>
+            <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-2xl mx-auto font-poppins animate-text delay-300">
+              Explore our specialized categories: Corporate, Business, Career, Couples & Relationship, Students, and Parenting Numerology.
+            </p>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-white animate-text delay-200">
-            Numerology Consultation Services
-          </h1>
-          <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-2xl mx-auto font-poppins animate-text delay-300">
-            Explore our specialized categories: Corporate, Business, Career, Couples & Relationship, Students, and Parenting Numerology.
-          </p>
         </div>
 
         {/* Services List */}

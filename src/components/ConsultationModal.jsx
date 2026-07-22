@@ -10,7 +10,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
     dob: '',
     service: 'Corporate Numerology',
     date: '',
-    timeSlot: '11:00 AM - 01:00 PM',
+    timeSlot: '07:00 AM - 08:30 AM',
     notes: ''
   });
 
@@ -32,6 +32,19 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 
   if (!isOpen) return null;
 
+  // Get active service details
+  const activeService = servicesList.find(s => s.title === formData.service) || servicesList[0];
+  const totalFee = activeService.price;
+  
+  // Calculate dynamic 20% deposit
+  const getAdvanceDeposit = (priceStr) => {
+    const num = parseInt(priceStr.replace(/[^0-9]/g, ''), 10);
+    if (isNaN(num)) return '₹1,000';
+    const dep = Math.round(num * 0.2 / 100) * 100; // round to nearest 100
+    return `₹${dep.toLocaleString('en-IN')}`;
+  };
+  const advanceDeposit = getAdvanceDeposit(totalFee);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -50,7 +63,9 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
       service: formData.service,
       date: formData.date,
       timeSlot: formData.timeSlot,
-      notes: formData.notes
+      notes: formData.notes,
+      advanceDeposit: `${advanceDeposit} (20% Confirmed)`,
+      totalFee: totalFee
     });
 
     setSubmittedBooking(saved);
@@ -71,7 +86,8 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 🔮 *Service Focus*: ${formData.service}
 📅 *Preferred Date*: ${formData.date}
 ⏰ *Time Slot*: ${formData.timeSlot}
-💳 *Advance Deposit*: ₹1,000 (20% Booking Fee)
+💳 *Advance Deposit*: ${advanceDeposit} (20% Booking Fee)
+💰 *Total Fee*: ${totalFee}
 
 ----------------------------------
 "Numbers Speak. We Decode. You Succeed."`;
@@ -80,8 +96,8 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border-2 border-[#D4AF37] relative text-left max-h-[92vh] overflow-y-auto font-sans">
+    <div className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex items-center justify-center p-2 sm:p-4">
+      <div className="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-4 sm:p-8 shadow-2xl border-2 border-[#D4AF37] relative text-left max-h-[95vh] overflow-y-auto font-sans">
         
         <button
           onClick={onClose}
@@ -118,7 +134,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                 Book Consultation
               </h3>
               <p className="text-xs text-slate-500 mt-1 font-medium">
-                20% Advance Booking Deposit @ ₹1,000 | Total Project Cost @ ₹5,000
+                20% Advance Booking Deposit @ {advanceDeposit} | Total Project Cost @ {totalFee}
               </p>
             </div>
 
@@ -133,7 +149,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                   placeholder="e.g. Ramesh Kumar"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
+                  className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
                 />
               </div>
 
@@ -148,7 +164,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                     placeholder="8107241463"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
+                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
                   />
                 </div>
                 <div>
@@ -160,7 +176,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                     required
                     value={formData.dob}
                     onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
+                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
                   />
                 </div>
               </div>
@@ -175,7 +191,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                   placeholder="tejendrameena7@gmail.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
+                  className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
                 />
               </div>
 
@@ -186,11 +202,14 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                 <select
                   value={formData.service}
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-[#D4AF37]"
+                  className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-[#D4AF37]"
                 >
-                  {servicesList.map(s => (
-                    <option key={s.id} value={s.title}>{s.title} ({s.price})</option>
-                  ))}
+                  {servicesList.map(s => {
+                    const displayTitle = s.title.replace(" Numerology", "");
+                    return (
+                      <option key={s.id} value={s.title}>{displayTitle} ({s.price})</option>
+                    );
+                  })}
                 </select>
               </div>
 
@@ -205,7 +224,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                     min={new Date().toISOString().split('T')[0]}
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
+                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
                   />
                 </div>
                 <div>
@@ -215,11 +234,11 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                   <select
                     value={formData.timeSlot}
                     onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
+                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
                   >
-                    <option value="10:00 AM - 12:00 PM">Morning (10am-12pm)</option>
-                    <option value="12:00 PM - 03:00 PM">Afternoon (12pm-3pm)</option>
-                    <option value="04:00 PM - 08:00 PM">Evening (4pm-8pm)</option>
+                    <option value="07:00 AM - 08:30 AM">Morning (7:00 AM - 8:30 AM)</option>
+                    <option value="12:00 PM - 03:00 PM">Afternoon (12:00 PM - 3:00 PM)</option>
+                    <option value="05:00 PM - 09:00 PM">Evening (5:00 PM - 9:00 PM)</option>
                   </select>
                 </div>
               </div>
@@ -227,11 +246,11 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
               <div className="bg-[#F8F6F1] p-3.5 rounded-2xl border border-[#D4AF37]/30 text-xs text-slate-700 space-y-1">
                 <div className="flex justify-between font-bold">
                   <span>Advance Payment Deposit (20%):</span>
-                  <span className="text-[#1E3A8A]">₹1,000</span>
+                  <span className="text-[#1E3A8A]">{advanceDeposit}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Total Project Fee:</span>
-                  <span>₹5,000</span>
+                  <span>{totalFee}</span>
                 </div>
               </div>
 

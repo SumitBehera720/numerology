@@ -116,13 +116,20 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
             onClick={() => go('home')} 
             className="text-left shrink-0 focus:outline-none cursor-pointer group"
           >
-            <div className="flex flex-col leading-tight">
-              <span className="text-lg sm:text-2xl font-extrabold font-cinzel tracking-widest text-[#1E3A8A]">
-                NUMEROLOGY
-              </span>
-              <span className="text-[10px] sm:text-sm font-bold tracking-widest uppercase text-slate-700">
-                by <span className="text-[#D4AF37] font-extrabold font-cinzel">TEJENDRA</span>
-              </span>
+            <div className="flex items-center gap-2.5">
+              <img 
+                src="/logo.jpeg" 
+                alt="Numerology by Tejendra Logo" 
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border border-[#D4AF37]/40 shadow-sm group-hover:scale-105 transition-transform"
+              />
+              <div className="flex flex-col leading-none">
+                <span className="text-base sm:text-xl font-extrabold font-cinzel tracking-widest text-[#1E3A8A]">
+                  NUMEROLOGY
+                </span>
+                <span className="text-[9px] sm:text-xs font-bold tracking-widest uppercase text-slate-700 mt-0.5">
+                  by <span className="text-[#D4AF37] font-extrabold font-cinzel">TEJENDRA</span>
+                </span>
+              </div>
             </div>
           </button>
 
