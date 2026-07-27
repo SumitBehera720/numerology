@@ -13,10 +13,10 @@ export default function ReportsPage({ onOpenConsultation }) {
           <SolarSystemBackground />
           <div className="relative z-10 w-full">
             <h1 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-white">
-              Numerology Reports Catalog
+              Products: Premium Numerology Reports
             </h1>
-            <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-2xl mx-auto">
-              Order custom 15–25 page PDF reports calculated specifically for your birth date and name numbers.
+            <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-2xl mx-auto font-poppins">
+              Order custom 15–25 page PDF reports calculated specifically for your birth date and name numbers. All products are delivered digitally.
             </p>
           </div>
         </div>

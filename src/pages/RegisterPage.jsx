@@ -10,18 +10,10 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
     name: '',
     countryCode: '+91',
     phone: '',
-    otp: '',
-    email: '',
     dob: '',
-    service: 'Corporate Numerology',
-    password: '',
-    confirmPassword: '',
     agreeTerms: true
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [otpSent, setOtpSent] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -33,38 +25,24 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
     }));
   };
 
-  const handleSendOtp = () => {
-    if (!formData.phone) {
-      alert('Please enter your mobile number first');
-      return;
-    }
-    setOtpSent(true);
-    alert(`OTP sent to ${formData.countryCode} ${formData.phone} (Mock OTP: 1234)`);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.password && formData.confirmPassword && formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-
     setIsSubmitting(true);
     setTimeout(() => {
+      const fullPhone = `${formData.countryCode} ${formData.phone}`;
       // Save User to LocalStorage & Login
-      const savedUsers = saveRegisteredUser({
+      saveRegisteredUser({
         name: formData.name,
-        email: formData.email,
-        phone: `${formData.countryCode} ${formData.phone}`,
+        phone: fullPhone,
         dob: formData.dob
       });
 
       const userSession = {
         name: formData.name,
-        email: formData.email,
-        phone: `${formData.countryCode} ${formData.phone}`,
-        dob: formData.dob
+        phone: fullPhone,
+        dob: formData.dob,
+        role: 'client'
       };
 
       setCurrentUser(userSession);
@@ -83,7 +61,7 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
   ];
 
   const whatsappQuestionUrl = `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(
-    'Hello Tejendra Meena Ji, I have a question regarding Numerology consultation.'
+    'Hello Teiendraa K Meena Ji, I have a question regarding Numerology consultation.'
   )}`;
 
   return (
@@ -97,7 +75,7 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
             {/* Title & Subtitle */}
             <div className="text-center mb-6">
               <span className="text-xs font-bold text-[#D4AF37] uppercase tracking-widest block mb-1">
-                Numerology by Tejendra
+                NUMEROLOGY by TEJENDRA
               </span>
               <h2 className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
                 Register Now
@@ -150,39 +128,7 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
                 </div>
               </div>
 
-              {/* Field 3: Enter OTP */}
-              <div className="relative flex items-center">
-                <input
-                  type="text"
-                  name="otp"
-                  placeholder="Enter OTP"
-                  value={formData.otp}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] text-sm font-medium pr-24"
-                />
-                <button
-                  type="button"
-                  onClick={handleSendOtp}
-                  className="absolute right-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-[#1E3A8A] font-bold text-xs rounded transition-colors cursor-pointer"
-                >
-                  {otpSent ? 'Resend' : 'Send OTP'}
-                </button>
-              </div>
-
-              {/* Field 4: Email */}
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  placeholder="Email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] text-sm font-medium"
-                />
-              </div>
-
-              {/* Field 5: DD-MM-YYYY Date of Birth */}
+              {/* Field 3: DD-MM-YYYY Date of Birth */}
               <div>
                 <input
                   type="date"
@@ -193,46 +139,6 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] text-sm font-medium"
                 />
-              </div>
-
-              {/* Field 6: Password with eye toggle */}
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  name="password"
-                  required
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] text-sm font-medium pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(prev => !prev)}
-                  className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600"
-                >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
-              </div>
-
-              {/* Field 7: Confirm Password with eye toggle */}
-              <div className="relative">
-                <input
-                  type={showConfirmPassword ? 'text' : 'password'}
-                  name="confirmPassword"
-                  required
-                  placeholder="Confirm Password"
-                  value={formData.confirmPassword}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] text-sm font-medium pr-10"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowConfirmPassword(prev => !prev)}
-                  className="absolute right-3 top-3.5 text-slate-400 hover:text-slate-600"
-                >
-                  {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                </button>
               </div>
 
               {/* Checkbox & Terms Agreement */}
@@ -246,7 +152,7 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
                   className="mt-1 w-4 h-4 text-[#D4AF37] focus:ring-[#D4AF37] rounded border-slate-300 cursor-pointer"
                 />
                 <label htmlFor="agreeTerms" className="text-[11px] text-slate-700 leading-tight">
-                  I agree to receive communication from Numerology by Tejendra via text messaging. Communication will be occasional as required and no spam will be sent. View{' '}
+                  I agree to receive communication from NUMEROLOGY by TEJENDRA via text messaging. Communication will be occasional as required and no spam will be sent. View{' '}
                   <button type="button" onClick={() => setActiveTab('policies')} className="text-[#1E3A8A] underline font-bold">Terms & conditions</button> and{' '}
                   <button type="button" onClick={() => setActiveTab('policies')} className="text-[#1E3A8A] underline font-bold">Privacy Policy</button>.
                 </label>

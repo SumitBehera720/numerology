@@ -1,6 +1,6 @@
 export const brandInfo = {
-  name: "Numerology by Tejendra",
-  author: "Tejendra Meena",
+  name: "NUMEROLOGY by TEJENDRA",
+  author: "Teiendraa K Meena",
   tagline: "Numbers Speak. We Decode. You Succeed.",
   phone: "8107241463",
   phoneRaw: "+918107241463",
@@ -14,7 +14,7 @@ export const brandInfo = {
     instagram: "https://instagram.com/numerologybytejendra",
     youtube: "https://youtube.com/@numerologybytejendra",
     facebook: "https://facebook.com/numerologybytejendra",
-    linkedin: "https://linkedin.com/company/numerologybytejendra",
+    linkedin: "https://www.linkedin.com/in/tejendrakumarmeena",
     whatsapp: "https://wa.me/918107241463"
   }
 };
@@ -146,7 +146,7 @@ export const testimonialsList = [
     name: "Abhishek Kumar Gupta",
     role: "KV Teacher",
     rating: 5,
-    text: "Mr. Tejendra has deep knowledge of Numerology. He tells about the person in great details. I have met many numerologists and found him one of the best among them.",
+    text: "Mr. Teiendraa K Meena has deep knowledge of Numerology. He tells about the person in great details. I have met many numerologists and found him one of the best among them.",
     image: "/Abhishek Gupta.jpeg"
   },
   {
@@ -160,22 +160,43 @@ export const testimonialsList = [
     name: "Mr Abhishek Srivastav",
     role: "AGM - Sales & Marketing Noida",
     rating: 5,
-    text: "Mr. Tejendra Meena is an exceptional Numerologist whose wisdom, insight, and dedication have positively impacted the lives of countless individuals. His deep understanding of numerology, combined with his ability to provide practical guidance, makes him a trusted mentor and advisor. What truly sets Mr. Tejendra Meena apart is his genuine commitment to helping people discover clarity, purpose, and direction in their personal and professional journeys. His predictions and consultations are not only insightful but also empowering, enabling individuals to make informed decisions with confidence. Beyond his expertise, Mr. Meena is admired for his humility, professionalism, and compassionate approach. His ability to connect with people and simplify complex numerological concepts reflects his mastery of the subject and his passion for serving others. It is a privilege to know and learn from a personality like Mr. Tejendra Meena. His remarkable work continues to inspire, guide, and transform lives. Wishing him continued success, recognition, and the opportunity to touch many more lives through his exceptional knowledge and service.",
+    text: "Mr. Teiendraa K Meena is an exceptional Numerologist whose wisdom, insight, and dedication have positively impacted the lives of countless individuals. His deep understanding of numerology, combined with his ability to provide practical guidance, makes him a trusted mentor and advisor. What truly sets Mr. Teiendraa K Meena apart is his genuine commitment to helping people discover clarity, purpose, and direction in their personal and professional journeys. His predictions and consultations are not only insightful but also empowering, enabling individuals to make informed decisions with confidence. Beyond his expertise, Mr. Meena is admired for his humility, professionalism, and compassionate approach. His ability to connect with people and simplify complex numerological concepts reflects his mastery of the subject and his passion for serving others. It is a privilege to know and learn from a personality like Mr. Teiendraa K Meena. His remarkable work continues to inspire, guide, and transform lives. Wishing him continued success, recognition, and the opportunity to touch many more lives through his exceptional knowledge and service.",
     image: "/Abhishek Srivastav.jpeg"
   },
   {
     name: "Gaurav Kushwaha",
     role: "NEET Student",
     rating: 5,
-    text: "Very helpful and incredibly accurate in predicting many aspects of my life. Tejendra Meena Sir not only identified my strengths and areas for improvement but also patiently and thoughtfully counselled me on how to work on them. His guidance was practical, insightful, and reassuring. It was truly one of the best one-hour sessions of my life. I highly recommend Numerology by Tejendra to anyone seeking clarity, direction, and personal growth.",
+    text: "Very helpful and incredibly accurate in predicting many aspects of my life. Teiendraa K Meena Sir not only identified my strengths and areas for improvement but also patiently and thoughtfully counselled me on how to work on them. His guidance was practical, insightful, and reassuring. It was truly one of the best one-hour sessions of my life. I highly recommend NUMEROLOGY by TEJENDRA to anyone seeking clarity, direction, and personal growth.",
     image: "/Gaurav.jpeg"
+  },
+  {
+    name: "Vikram Aditya Rathore",
+    role: "Founder, Rathore Logistics",
+    rating: 5,
+    text: "I consulted Teiendraa K Meena for our logistics startup brand name and logo vibration. After making the recommended spelling changes, we saw a noticeable shift in client acquisition and team alignment within 3 months. His corporate background makes him extremely practical.",
+    image: ""
+  },
+  {
+    name: "Dr. Ananya Sen",
+    role: "Consultant Gynecologist, Kolkata",
+    rating: 5,
+    text: "Highly impressed by his analytical approach. Teiendraa Ji did a name spelling modification for me and my daughter. The consultation was scientific, logical, and without any superstitious claims. Highly recommended for professionals.",
+    image: ""
+  },
+  {
+    name: "Siddharth Malhotra",
+    role: "Senior Software Engineer, Tech Mahindra",
+    rating: 5,
+    text: "Teiendraa K Meena's career numerology guidance was eye-opening. The career timing analysis was very accurate, and the name correction gave me the confidence to make my transition. Excellent 60 minutes online session.",
+    image: ""
   }
 ];
 
 export const faqList = [
   {
-    q: "How does Numerology by Tejendra differ from astrology or tarot?",
-    a: "Numerology is a precise mathematical and cosmic science based on the energy frequencies of numbers (1 through 9) derived from your birth date and name letters. Tejendra Meena combines Pythagorean and Chaldean numerology to give actionable, practical life guidance."
+    q: "How does NUMEROLOGY by TEJENDRA differ from astrology or tarot?",
+    a: "Numerology is a precise mathematical and cosmic science based on the energy frequencies of numbers (1 through 9) derived from your birth date and name letters. Teiendraa K Meena combines Pythagorean and Chaldean numerology to give actionable, practical life guidance."
   },
   {
     q: "What details are required for a Numerology consultation?",
@@ -183,7 +204,7 @@ export const faqList = [
   },
   {
     q: "Do I need to change my official name on legal documents?",
-    a: "Not necessarily! In most cases, Tejendra Ji recommends practical name spelling modifications for everyday usage (social media, email signature, visiting cards, business branding) which shifts your energy vibration without requiring immediate passport or Aadhaar changes."
+    a: "Not necessarily! In most cases, Teiendraa Ji recommends practical name spelling modifications for everyday usage (social media, email signature, visiting cards, business branding) which shifts your energy vibration without requiring immediate passport or Aadhaar changes."
   },
   {
     q: "How do I book a consultation and what is the payment process?",
@@ -247,7 +268,10 @@ export function getRegisteredUsers() {
 export function saveRegisteredUser(userObj) {
   try {
     const users = getRegisteredUsers();
-    const existingIndex = users.findIndex(u => u.email === userObj.email);
+    const existingIndex = users.findIndex(u => 
+      (userObj.phone && u.phone === userObj.phone) || 
+      (userObj.email && u.email === userObj.email)
+    );
     if (existingIndex >= 0) {
       users[existingIndex] = { ...users[existingIndex], ...userObj };
     } else {

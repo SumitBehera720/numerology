@@ -2,6 +2,7 @@ import React from 'react';
 import { CheckCircle2, Calendar, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 import { servicesList, brandInfo } from '../data/tejendraData';
 import SolarSystemBackground from '../components/SolarSystemBackground';
+import { ScrollReveal } from '../hooks/useScrollReveal';
 
 export default function ServicesPage({ onOpenConsultation }) {
   return (
@@ -70,6 +71,127 @@ export default function ServicesPage({ onOpenConsultation }) {
             </div>
           ))}
         </div>
+
+        {/* ═══════════════════════════════════════════════════════
+            BOOK AN APPOINTMENT SECTION (Inspired by Reference Screenshot)
+        ═══════════════════════════════════════════════════════ */}
+        <section className="bg-white py-16 border-t border-slate-200 rounded-3xl mt-12 shadow-sm">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            <ScrollReveal>
+              <div>
+                <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] text-xs font-bold uppercase tracking-widest">
+                  Priority Sessions
+                </span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold font-cinzel text-[#1E3A8A] mt-3">
+                  Book An Appointment
+                </h2>
+                <p className="text-slate-600 text-sm max-w-xl mx-auto mt-2 font-medium">
+                  Select your preferred meeting type and duration to schedule a consultation slot with Teiendraa K Meena.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+              
+              {/* Card 1: Online Appointment */}
+              <ScrollReveal>
+                <div className="bg-[#F8F6F1] rounded-3xl p-6 sm:p-8 border-2 border-[#D4AF37]/40 shadow-lg space-y-5 text-center flex flex-col justify-between h-full group hover:border-[#1E3A8A] transition-all">
+                  <div className="space-y-4">
+                    <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm h-48">
+                      <img 
+                        src="/logo.jpeg" 
+                        alt="Online Consultation" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <h3 className="text-xl font-extrabold font-cinzel text-[#1E3A8A]">
+                      Online Appointment
+                    </h3>
+                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wide">
+                      Online Zoom Meeting
+                    </p>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                      Ask anything about you, your career, marriage, family etc. from any location globally.
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-200">
+                    <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-3.5">
+                      Book your Appointment for:
+                    </p>
+                    <div className="flex justify-center gap-6">
+                      <button
+                        onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '30 Minutes' })}
+                        className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                        title="Book 30 Minutes Online Session"
+                      >
+                        <span className="text-base font-extrabold leading-none">30</span>
+                        <span className="text-[8px] font-bold">Minutes</span>
+                      </button>
+                      <button
+                        onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '60 Minutes' })}
+                        className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                        title="Book 60 Minutes Online Session"
+                      >
+                        <span className="text-base font-extrabold leading-none">60</span>
+                        <span className="text-[8px] font-bold">Minutes</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              {/* Card 2: Face to Face Appointment */}
+              <ScrollReveal>
+                <div className="bg-[#F8F6F1] rounded-3xl p-6 sm:p-8 border-2 border-[#D4AF37]/40 shadow-lg space-y-5 text-center flex flex-col justify-between h-full group hover:border-[#1E3A8A] transition-all">
+                  <div className="space-y-4">
+                    <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm h-48">
+                      <img 
+                        src="/numerology pic.jpg" 
+                        alt="Face to Face Consultation" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <h3 className="text-xl font-extrabold font-cinzel text-[#1E3A8A]">
+                      Face to Face Appointment
+                    </h3>
+                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wide">
+                      Face to Face Meeting in office
+                    </p>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                      In-person consultation in our office for in-depth chart readings and personal strategy.
+                    </p>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-200">
+                    <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-3.5">
+                      Book your Appointment for:
+                    </p>
+                    <div className="flex justify-center gap-6">
+                      <button
+                        onClick={() => onOpenConsultation({ mode: 'Face to Face Office Meeting', duration: '30 Minutes' })}
+                        className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                        title="Book 30 Minutes In-Person Session"
+                      >
+                        <span className="text-base font-extrabold leading-none">30</span>
+                        <span className="text-[8px] font-bold">Minutes</span>
+                      </button>
+                      <button
+                        onClick={() => onOpenConsultation({ mode: 'Face to Face Office Meeting', duration: '60 Minutes' })}
+                        className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                        title="Book 60 Minutes In-Person Session"
+                      >
+                        <span className="text-base font-extrabold leading-none">60</span>
+                        <span className="text-[8px] font-bold">Minutes</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+
+            </div>
+          </div>
+        </section>
 
       </div>
     </div>

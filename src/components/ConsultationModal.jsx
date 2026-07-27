@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, Calendar, User, Phone, Mail, CheckCircle2, Sparkles, Lock, ArrowRight, MessageSquare } from 'lucide-react';
 import { brandInfo, servicesList, saveConsultationBooking } from '../data/tejendraData';
 
-export default function ConsultationModal({ isOpen, onClose, currentUser, onRequireLogin }) {
+export default function ConsultationModal({ isOpen, onClose, currentUser, onRequireLogin, bookingParams }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -11,7 +11,9 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
     service: 'Corporate Numerology',
     date: '',
     timeSlot: '07:00 AM - 08:30 AM',
-    notes: ''
+    notes: '',
+    mode: 'Online Zoom Meeting',
+    duration: '30 Minutes'
   });
 
   const [isSuccess, setIsSuccess] = useState(false);
@@ -19,16 +21,18 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 
   // Autofill current user details if logged in
   useEffect(() => {
-    if (currentUser) {
+    if (isOpen) {
       setFormData(prev => ({
         ...prev,
-        name: currentUser.name || prev.name,
-        email: currentUser.email || prev.email,
-        phone: currentUser.phone || prev.phone,
-        dob: currentUser.dob || prev.dob
+        name: currentUser?.name || prev.name,
+        email: currentUser?.email || prev.email,
+        phone: currentUser?.phone || prev.phone,
+        dob: currentUser?.dob || prev.dob,
+        mode: bookingParams?.mode || prev.mode || 'Online Zoom Meeting',
+        duration: bookingParams?.duration || prev.duration || '30 Minutes'
       }));
     }
-  }, [currentUser, isOpen]);
+  }, [currentUser, isOpen, bookingParams]);
 
   if (!isOpen) return null;
 
@@ -64,6 +68,8 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
       date: formData.date,
       timeSlot: formData.timeSlot,
       notes: formData.notes,
+      mode: formData.mode,
+      duration: formData.duration,
       advanceDeposit: `${advanceDeposit} (20% Confirmed)`,
       totalFee: totalFee
     });
@@ -75,15 +81,17 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
   // WhatsApp Message Formatted Output
   const generateFormattedWhatsApp = () => {
     const text = 
-`🌟 *NUMEROLOGY BY TEJENDRA* 🌟
+`🌟 *NUMEROLOGY by TEJENDRA* 🌟
 ----------------------------------
 📌 *New Consultation Booking Request*
 
 👤 *Client Name*: ${formData.name}
 📱 *Mobile*: ${formData.phone}
-✉️ *Email*: ${formData.email}
+✉️ *Email*: ${formData.email || 'Not specified'}
 🎂 *Date of Birth*: ${formData.dob || 'Not specified'}
 🔮 *Service Focus*: ${formData.service}
+🌐 *Meeting Mode*: ${formData.mode}
+⏱️ *Duration*: ${formData.duration}
 📅 *Preferred Date*: ${formData.date}
 ⏰ *Time Slot*: ${formData.timeSlot}
 💳 *Advance Deposit*: ${advanceDeposit} (20% Booking Fee)
@@ -128,7 +136,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
           <div>
             <div className="text-center mb-6">
               <span className="text-xs font-bold text-[#D4AF37] uppercase tracking-widest block mb-1">
-                Numerology by Tejendra
+                NUMEROLOGY by TEJENDRA
               </span>
               <h3 className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
                 Book Consultation
@@ -183,12 +191,11 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                  Email Address *
+                  Email Address (Optional)
                 </label>
                 <input
                   type="email"
-                  required
-                  placeholder="tejendrameena7@gmail.com"
+                  placeholder="e.g. client@example.com"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-[#D4AF37]"
@@ -211,6 +218,36 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                     );
                   })}
                 </select>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                    Appointment Mode *
+                  </label>
+                  <select
+                    value={formData.mode}
+                    onChange={(e) => setFormData({ ...formData, mode: e.target.value })}
+                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-[#D4AF37]"
+                  >
+                    <option value="Online Zoom Meeting">Online Zoom Meeting</option>
+                    <option value="Face to Face Office Meeting">Face to Face Office Meeting</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                    Duration *
+                  </label>
+                  <select
+                    value={formData.duration}
+                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
+                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-[#D4AF37]"
+                  >
+                    <option value="30 Minutes">30 Minutes</option>
+                    <option value="60 Minutes">60 Minutes</option>
+                  </select>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

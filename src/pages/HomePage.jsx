@@ -9,7 +9,7 @@ import FreeCalculators from '../components/FreeCalculators';
 import { ScrollReveal } from '../hooks/useScrollReveal';
 import SolarSystemBackground from '../components/SolarSystemBackground';
 
-export default function HomePage({ onOpenConsultation, setActiveTab }) {
+export default function HomePage({ onOpenConsultation, setActiveTab, currentUser, setCurrentUser }) {
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
@@ -31,7 +31,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
               
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-widest animate-text delay-100">
                 <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-                Professional Numerological Consulting
+                Professional Numerology Consulting
               </div>
 
               {/* Main Headline */}
@@ -47,7 +47,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
 
               {/* Body Copy */}
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl font-poppins animate-text delay-400">
-                Unlock your cosmic blueprint with <strong>Tejendra Meena</strong>. Transform your personal energy, commercial enterprise, career milestones, and relationship harmony with high-vibration Chaldean & Pythagorean numerology.
+                Unlock your cosmic blueprint with <strong>Teiendraa K Meena</strong>. Transform your personal energy, commercial enterprise, career milestones, and relationship harmony with high-vibration Chaldean & Pythagorean numerology.
               </p>
 
               {/* Action Buttons */}
@@ -72,16 +72,16 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
               {/* Stats Bar */}
               <div className="pt-6 border-t border-white/15 grid grid-cols-2 sm:grid-cols-4 gap-3 text-left animate-text delay-600">
                 <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/15">
-                  <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">10,000+</div>
+                  <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">1000+</div>
                   <div className="text-xs text-slate-200 mt-0.5">Lives Transformed</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/15">
-                  <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">1,500+</div>
+                  <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">50+</div>
                   <div className="text-xs text-slate-200 mt-0.5">Corporate Brands</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/15">
-                  <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">10+ Yrs</div>
-                  <div className="text-xs text-slate-200 mt-0.5">Expert Experience</div>
+                  <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">11+ Yrs</div>
+                  <div className="text-xs text-slate-200 mt-0.5">Experience</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/15">
                   <div className="text-2xl font-extrabold font-cinzel text-[#D4AF37]">100%</div>
@@ -99,7 +99,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
                 <div className="relative mb-4 flex justify-center">
                   <img 
                     src="/tejendra_new.jpeg" 
-                    alt="Tejendra Meena - Master Numerologist" 
+                    alt="Teiendraa K Meena - Master Numerologist" 
                     className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl object-cover object-top border-4 border-[#D4AF37] shadow-xl"
                   />
                   <div className="absolute -bottom-2 bg-[#1E3A8A] text-[#D4AF37] text-[10px] font-extrabold px-3 py-0.5 rounded-full border border-[#D4AF37] shadow">
@@ -109,7 +109,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
 
                 <div className="text-center pt-2">
                   <h3 className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
-                    Tejendra Meena
+                    Teiendraa K Meena
                   </h3>
                   <p className="text-xs font-bold text-[#D4AF37] uppercase tracking-widest mt-1">
                     Master Numerologist & Business Strategist
@@ -152,8 +152,70 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
       ═══════════════════════════════════════════════════════ */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <ScrollReveal>
-          <FreeCalculators onBookConsultation={onOpenConsultation} />
+          <FreeCalculators onBookConsultation={onOpenConsultation} currentUser={currentUser} setCurrentUser={setCurrentUser} />
         </ScrollReveal>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          WISDOM, INTUITION & SPIRITUAL GUIDANCE SECTION (With Uploaded Photo)
+      ═══════════════════════════════════════════════════════ */}
+      <section className="bg-white py-16 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-left">
+            
+            {/* Left Column: Image with beautiful glowing borders */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative group max-w-[360px] w-full">
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-[#D4AF37] to-[#1E3A8A] rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
+                <img 
+                  src="/tejendra_wisdom.jpeg" 
+                  alt="Teiendraa K Meena - Wisdom, Intuition, and Spiritual Guidance" 
+                  className="relative rounded-3xl object-cover border-4 border-white shadow-2xl w-full aspect-[4/5] object-center"
+                />
+              </div>
+            </div>
+
+            {/* Right Column: Descriptions */}
+            <div className="lg:col-span-7 space-y-6">
+              <span className="text-xs font-black bg-[#1E3A8A]/10 text-[#1E3A8A] px-4 py-1.5 rounded-full inline-block uppercase tracking-wider">
+                Cosmic Alignment & Insight
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-[#1E3A8A]">
+                Wisdom, Intuition & <br />Spiritual Guidance
+              </h2>
+              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                Connect with the deep cosmic frequencies of your life blueprint. Under the guidance of **Teiendraa K Meena**, discover how numbers reveal hidden planetary vibrations that govern your daily actions, commercial ventures, and relationship harmony.
+              </p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-xs font-semibold text-slate-800">
+                <div className="p-4 bg-[#F8F6F1] rounded-2xl border border-[#D4AF37]/35 shadow-sm space-y-2">
+                  <span className="text-[#D4AF37] text-lg font-bold">👁️ Wisdom</span>
+                  <p className="text-[11px] text-slate-600 font-medium leading-relaxed mt-1">Analyze dual-grid systems with logic and scientific precision.</p>
+                </div>
+                
+                <div className="p-4 bg-[#F8F6F1] rounded-2xl border border-[#D4AF37]/35 shadow-sm space-y-2">
+                  <span className="text-[#D4AF37] text-lg font-bold">✨ Intuition</span>
+                  <p className="text-[11px] text-slate-600 font-medium leading-relaxed mt-1">Decode deep karmic numbers and timing block frequencies.</p>
+                </div>
+                
+                <div className="p-4 bg-[#F8F6F1] rounded-2xl border border-[#D4AF37]/35 shadow-sm space-y-2">
+                  <span className="text-[#D4AF37] text-lg font-bold">🕉️ Spiritual Path</span>
+                  <p className="text-[11px] text-slate-600 font-medium leading-relaxed mt-1">Harmonize identity and spelling grids to align with your true purpose.</p>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <button
+                  onClick={() => onOpenConsultation()}
+                  className="btn-primary px-8 py-3.5 text-sm font-extrabold cursor-pointer"
+                >
+                  Request Intuitive Consultation
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════
@@ -336,6 +398,127 @@ export default function HomePage({ onOpenConsultation, setActiveTab }) {
                 </div>
               </ScrollReveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          BOOK AN APPOINTMENT SECTION (Inspired by Reference Screenshot)
+      ═══════════════════════════════════════════════════════ */}
+      <section className="bg-white py-16 border-t border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+          <ScrollReveal>
+            <div>
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#1E3A8A]/10 text-[#1E3A8A] text-xs font-bold uppercase tracking-widest">
+                Priority Sessions
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-cinzel text-[#1E3A8A] mt-3">
+                Book An Appointment
+              </h2>
+              <p className="text-slate-600 text-sm max-w-xl mx-auto mt-2 font-medium">
+                Select your preferred meeting type and duration to schedule a consultation slot with Teiendraa K Meena.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+            
+            {/* Card 1: Online Appointment */}
+            <ScrollReveal>
+              <div className="bg-[#F8F6F1] rounded-3xl p-6 sm:p-8 border-2 border-[#D4AF37]/40 shadow-lg space-y-5 text-center flex flex-col justify-between h-full group hover:border-[#1E3A8A] transition-all">
+                <div className="space-y-4">
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm h-48">
+                    <img 
+                      src="/logo.jpeg" 
+                      alt="Online Consultation" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h3 className="text-xl font-extrabold font-cinzel text-[#1E3A8A]">
+                    Online Appointment
+                  </h3>
+                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wide">
+                    Online Zoom Meeting
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                    Ask anything about you, your career, marriage, family etc. from any location globally.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200">
+                  <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-3.5">
+                    Book your Appointment for:
+                  </p>
+                  <div className="flex justify-center gap-6">
+                    <button
+                      onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '30 Minutes' })}
+                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      title="Book 30 Minutes Online Session"
+                    >
+                      <span className="text-base font-extrabold leading-none">30</span>
+                      <span className="text-[8px] font-bold">Minutes</span>
+                    </button>
+                    <button
+                      onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '60 Minutes' })}
+                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      title="Book 60 Minutes Online Session"
+                    >
+                      <span className="text-base font-extrabold leading-none">60</span>
+                      <span className="text-[8px] font-bold">Minutes</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Card 2: Face to Face Appointment */}
+            <ScrollReveal>
+              <div className="bg-[#F8F6F1] rounded-3xl p-6 sm:p-8 border-2 border-[#D4AF37]/40 shadow-lg space-y-5 text-center flex flex-col justify-between h-full group hover:border-[#1E3A8A] transition-all">
+                <div className="space-y-4">
+                  <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm h-48">
+                    <img 
+                      src="/numerology pic.jpg" 
+                      alt="Face to Face Consultation" 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <h3 className="text-xl font-extrabold font-cinzel text-[#1E3A8A]">
+                    Face to Face Appointment
+                  </h3>
+                  <p className="text-xs text-slate-500 font-bold uppercase tracking-wide">
+                    Face to Face Meeting in office
+                  </p>
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                    In-person consultation in our office for in-depth chart readings and personal strategy.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200">
+                  <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-3.5">
+                    Book your Appointment for:
+                  </p>
+                  <div className="flex justify-center gap-6">
+                    <button
+                      onClick={() => onOpenConsultation({ mode: 'Face to Face Office Meeting', duration: '30 Minutes' })}
+                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      title="Book 30 Minutes In-Person Session"
+                    >
+                      <span className="text-base font-extrabold leading-none">30</span>
+                      <span className="text-[8px] font-bold">Minutes</span>
+                    </button>
+                    <button
+                      onClick={() => onOpenConsultation({ mode: 'Face to Face Office Meeting', duration: '60 Minutes' })}
+                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      title="Book 60 Minutes In-Person Session"
+                    >
+                      <span className="text-base font-extrabold leading-none">60</span>
+                      <span className="text-[8px] font-bold">Minutes</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ScrollReveal>
+
           </div>
         </div>
       </section>

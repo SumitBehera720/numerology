@@ -8,11 +8,12 @@ import { brandInfo, servicesList } from '../data/tejendraData';
 
 const NAV_LINKS = [
   { id: 'home',         label: 'Home', icon: Home },
-  { id: 'about',        label: 'About Tejendra', icon: User },
+  { id: 'about',        label: 'About Teiendraa', icon: User },
   { id: 'services',     label: 'Services', icon: Compass, hasDropdown: true },
-  { id: 'reports',      label: 'Numerology Reports', icon: FileText },
+  { id: 'reports',      label: 'Products', icon: FileText },
   { id: 'testimonials', label: 'Testimonials', icon: Star },
   { id: 'calculator',   label: 'Free Calculator', icon: Sparkles },
+  { id: 'updates',      label: 'Updates', icon: BookOpen },
   { id: 'contact',      label: 'Contact', icon: Phone },
 ];
 
@@ -53,7 +54,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
   };
 
   const whatsappUrl = `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(
-    'Hello Tejendra Meena Ji, I have a question regarding Numerology consultation.'
+    'Hello Teiendraa K Meena Ji, I have a question regarding Numerology consultation.'
   )}`;
 
   return (
@@ -68,7 +69,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
               Numbers Speak. We Decode. You Succeed.
             </span>
             <span className="sm:hidden font-medium text-slate-200 text-[11px] truncate">
-              Numerology by Tejendra
+              Numbers Speak. We Decode. You Succeed.
             </span>
           </div>
 
@@ -119,7 +120,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
             <div className="flex items-center gap-2.5">
               <img 
                 src="/logo.jpeg" 
-                alt="Numerology by Tejendra Logo" 
+                alt="NUMEROLOGY by TEJENDRA Logo" 
                 className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border border-[#D4AF37]/40 shadow-sm group-hover:scale-105 transition-transform"
               />
               <div className="flex flex-col leading-none">
@@ -223,7 +224,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
             <div className="flex items-center gap-3">
               <img 
                 src="/numerology pic.jpg" 
-                alt="Tejendra Meena" 
+                alt="Teiendraa K Meena" 
                 className="w-10 h-10 rounded-xl object-cover object-top border border-[#D4AF37]" 
               />
               <div className="flex flex-col text-left">

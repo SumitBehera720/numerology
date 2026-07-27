@@ -37,7 +37,7 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
 
   const handleWhatsAppClient = (phone, name, service) => {
     const cleanPhone = phone.replace(/\D/g, '');
-    const msg = `Hello ${name}, this is Tejendra Meena Ji's office regarding your ${service} consultation booking. We have received your request.`;
+    const msg = `Hello ${name}, this is Teiendraa K Meena Ji's office regarding your ${service} consultation booking. We have received your request.`;
     window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 

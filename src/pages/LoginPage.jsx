@@ -25,7 +25,7 @@ export default function LoginPage({ setActiveTab, onOpenConsultation, setCurrent
         cleanPass === 'tejendra123'
       ) {
         const adminSession = {
-          name: 'Tejendra Meena',
+          name: 'Teiendraa K Meena',
           email: 'tejendrameena7@gmail.com',
           phone: '8107241463',
           role: 'admin'
@@ -39,16 +39,22 @@ export default function LoginPage({ setActiveTab, onOpenConsultation, setCurrent
 
       // STANDARD CLIENT AUTHENTICATION
       const registeredUsers = getRegisteredUsers();
-      const existing = registeredUsers.find(u => u.email?.toLowerCase() === cleanId || u.phone === identifier);
+      const existing = registeredUsers.find(u => 
+        (u.email && u.email.toLowerCase() === cleanId) || 
+        u.phone === identifier ||
+        u.phone?.replace(/\D/g, '').includes(identifier.replace(/\D/g, ''))
+      );
 
       let sessionUser;
       if (existing) {
         sessionUser = { ...existing, role: 'client' };
       } else {
+        // Register client on the fly if not exists
         sessionUser = {
           name: identifier.split('@')[0] || 'Client User',
-          email: identifier.includes('@') ? identifier : 'client@example.com',
-          phone: identifier.includes('@') ? '+91 8107241463' : identifier,
+          email: identifier.includes('@') ? identifier : '',
+          phone: identifier.includes('@') ? '' : identifier,
+          dob: '',
           role: 'client'
         };
         saveRegisteredUser(sessionUser);

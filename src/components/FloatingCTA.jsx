@@ -3,7 +3,7 @@ import { Calendar, MessageSquare } from 'lucide-react';
 import { brandInfo } from '../data/tejendraData';
 
 const WHATSAPP_URL = `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(
-  'Hello Tejendra Meena Ji, I have a question regarding Numerology consultation.'
+  'Hello Teiendraa K Meena Ji, I have a question regarding Numerology consultation.'
 )}`;
 
 export default function FloatingCTA({ onOpenConsultation }) {

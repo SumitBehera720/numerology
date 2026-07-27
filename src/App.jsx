@@ -13,14 +13,23 @@ import LoginPage from './pages/LoginPage';
 import AdminPanel from './pages/AdminPanel';
 import FreeCalculators from './components/FreeCalculators';
 import PoliciesPage from './pages/PoliciesPage';
+import UpdatesPage from './pages/UpdatesPage';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [bookingParams, setBookingParams] = useState(null);
 
-  const handleOpenConsultation = () => setIsConsultationOpen(true);
-  const handleCloseConsultation = () => setIsConsultationOpen(false);
+  const handleOpenConsultation = (params) => {
+    setBookingParams(params || null);
+    setIsConsultationOpen(true);
+  };
+  
+  const handleCloseConsultation = () => {
+    setBookingParams(null);
+    setIsConsultationOpen(false);
+  };
 
   const handleRequireLogin = () => {
     setIsConsultationOpen(false);
@@ -46,6 +55,8 @@ export default function App() {
           <HomePage 
             onOpenConsultation={handleOpenConsultation}
             setActiveTab={setActiveTab}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
           />
         )}
 
@@ -71,13 +82,23 @@ export default function App() {
           <HomePage 
             onOpenConsultation={handleOpenConsultation}
             setActiveTab={setActiveTab}
+            currentUser={currentUser}
+            setCurrentUser={setCurrentUser}
           />
         )}
 
         {activeTab === 'calculator' && (
           <div className="max-w-7xl mx-auto px-4 py-12">
-            <FreeCalculators onBookConsultation={handleOpenConsultation} />
+            <FreeCalculators 
+              onBookConsultation={handleOpenConsultation} 
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+            />
           </div>
+        )}
+
+        {activeTab === 'updates' && (
+          <UpdatesPage />
         )}
 
         {activeTab === 'signup' && (
@@ -130,6 +151,7 @@ export default function App() {
         onClose={handleCloseConsultation}
         currentUser={currentUser}
         onRequireLogin={handleRequireLogin}
+        bookingParams={bookingParams}
       />
 
       {/* Mobile Floating Action Buttons */}

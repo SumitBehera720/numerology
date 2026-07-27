@@ -14,7 +14,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
             <div className="flex items-center gap-2.5">
               <img 
                 src="/logo.jpeg" 
-                alt="Numerology by Tejendra Logo" 
+                alt="NUMEROLOGY by TEJENDRA Logo" 
                 className="w-10 h-10 rounded-xl object-cover border border-[#D4AF37]/30 shadow-sm"
               />
               <div className="flex flex-col leading-none">
@@ -32,7 +32,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
             </p>
 
             <p className="text-xs text-slate-300 leading-relaxed">
-              Professional Corporate, Business, Career, Couples, Students, and Parenting Numerology guidance by Tejendra Meena.
+              Professional Corporate, Business, Career, Couples, Students, and Parenting Numerology guidance by Teiendraa K Meena.
             </p>
 
             {/* Follow Us Row */}
@@ -68,7 +68,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
               </li>
               <li>
                 <button onClick={() => setActiveTab('about')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
-                  About Tejendra Meena
+                  About Teiendraa K Meena
                 </button>
               </li>
               <li>
@@ -139,7 +139,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
 
         {/* Copyright */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300">
-          <p>© {new Date().getFullYear()} Numerology by Tejendra. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} NUMEROLOGY by TEJENDRA. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
             <button onClick={() => setActiveTab('policies')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">Privacy Policy</button>
             <span>•</span>
