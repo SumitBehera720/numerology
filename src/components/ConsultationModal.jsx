@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, Calendar, User, Phone, Mail, CheckCircle2, Sparkles, Lock, ArrowRight, MessageSquare } from 'lucide-react';
-import { brandInfo, servicesList, saveConsultationBooking } from '../data/tejendraData';
+import { brandInfo, servicesList, reportsCatalog, discussionList, saveConsultationBooking } from '../data/tejendraData';
 
 export default function ConsultationModal({ isOpen, onClose, currentUser, onRequireLogin, bookingParams }) {
   const [formData, setFormData] = useState({
@@ -22,22 +22,37 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
   // Autofill current user details if logged in
   useEffect(() => {
     if (isOpen) {
-      setFormData(prev => ({
-        ...prev,
-        name: currentUser?.name || prev.name,
-        email: currentUser?.email || prev.email,
-        phone: currentUser?.phone || prev.phone,
-        dob: currentUser?.dob || prev.dob,
-        mode: bookingParams?.mode || prev.mode || 'Online Zoom Meeting',
-        duration: bookingParams?.duration || prev.duration || '30 Minutes'
-      }));
+      setFormData(prev => {
+        let defaultService = prev.service;
+        if (bookingParams?.service) {
+          defaultService = bookingParams.service;
+        } else if (bookingParams?.mode && bookingParams?.duration) {
+          const matched = discussionList.find(
+            d => d.mode === bookingParams.mode && d.duration === bookingParams.duration
+          );
+          if (matched) {
+            defaultService = matched.title;
+          }
+        }
+        return {
+          ...prev,
+          name: currentUser?.name || prev.name,
+          email: currentUser?.email || prev.email,
+          phone: currentUser?.phone || prev.phone,
+          dob: currentUser?.dob || prev.dob,
+          mode: bookingParams?.mode || prev.mode || 'Online Zoom Meeting',
+          duration: bookingParams?.duration || prev.duration || '30 Minutes',
+          service: defaultService
+        };
+      });
     }
   }, [currentUser, isOpen, bookingParams]);
 
   if (!isOpen) return null;
 
-  // Get active service details
-  const activeService = servicesList.find(s => s.title === formData.service) || servicesList[0];
+  // Get active service details across services, reports, and discussions
+  const allBookable = [...servicesList, ...reportsCatalog, ...discussionList];
+  const activeService = allBookable.find(s => s.title === formData.service) || allBookable[0];
   const totalFee = activeService.price;
   
   // Calculate dynamic 20% deposit
@@ -141,9 +156,6 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
               <h3 className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
                 Book Consultation
               </h3>
-              <p className="text-xs text-slate-500 mt-1 font-medium">
-                20% Advance Booking Deposit @ {advanceDeposit} | Total Project Cost @ {totalFee}
-              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -211,12 +223,21 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                   onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                   className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-[#D4AF37]"
                 >
-                  {servicesList.map(s => {
-                    const displayTitle = s.title.replace(" Numerology", "");
-                    return (
-                      <option key={s.id} value={s.title}>{displayTitle} ({s.price})</option>
-                    );
-                  })}
+                  <optgroup label="Detailed Reports & Plans">
+                    {reportsCatalog.map(r => (
+                      <option key={r.id} value={r.title}>{r.title} ({r.price})</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Direct Consultation Sessions">
+                    {discussionList.map(d => (
+                      <option key={d.id} value={d.title}>{d.title} ({d.price})</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Specialized Consulting Services">
+                    {servicesList.map(s => (
+                      <option key={s.id} value={s.title}>{s.title} ({s.price})</option>
+                    ))}
+                  </optgroup>
                 </select>
               </div>
 
@@ -280,16 +301,6 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
                 </div>
               </div>
 
-              <div className="bg-[#F8F6F1] p-3.5 rounded-2xl border border-[#D4AF37]/30 text-xs text-slate-700 space-y-1">
-                <div className="flex justify-between font-bold">
-                  <span>Advance Payment Deposit (20%):</span>
-                  <span className="text-[#1E3A8A]">{advanceDeposit}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Total Project Fee:</span>
-                  <span>{totalFee}</span>
-                </div>
-              </div>
 
               <button
                 type="submit"

@@ -134,7 +134,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
           title: traitsObj.title,
           traits: traitsObj.traits,
           career: traitsObj.career,
-          advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Teiendraa K Meena for personalized spelling optimization.`
+          advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Tejendraa k meena for personalized spelling optimization.`
         });
       } else if (activeTab === 'lifepath') {
         const lifePathNum = calculateLifePath(leadDob);
@@ -146,7 +146,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
           title: traitsObj.title,
           traits: traitsObj.traits,
           career: traitsObj.career,
-          advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Teiendraa K Meena to align your career and business with this number.`
+          advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Tejendraa k meena to align your career and business with this number.`
         });
       } else if (activeTab === 'mobile') {
         const digits = leadPhone.replace(/\D/g, '');
@@ -161,7 +161,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
           title: traitsObj.title,
           traits: traitsObj.traits,
           vibrationRating: reduced === 1 || reduced === 5 || reduced === 6 ? 'Highly Auspicious & Wealth Attracting' : 'Moderate Energy - Optimization Suggested',
-          advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Teiendraa K Meena.`
+          advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Tejendraa k meena.`
         });
       }
       setIsCalculating(false);
@@ -186,7 +186,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         title: traitsObj.title,
         traits: traitsObj.traits,
         career: traitsObj.career,
-        advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Teiendraa K Meena for personalized spelling optimization.`
+        advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Tejendraa k meena for personalized spelling optimization.`
       });
       setIsCalculating(false);
     }, 600);
@@ -208,7 +208,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         title: traitsObj.title,
         traits: traitsObj.traits,
         career: traitsObj.career,
-        advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Teiendraa K Meena to align your career and business with this number.`
+        advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Tejendraa k meena to align your career and business with this number.`
       });
       setIsCalculating(false);
     }, 600);
@@ -233,7 +233,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         title: traitsObj.title,
         traits: traitsObj.traits,
         vibrationRating: reduced === 1 || reduced === 5 || reduced === 6 ? 'Highly Auspicious & Wealth Attracting' : 'Moderate Energy - Optimization Suggested',
-        advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Teiendraa K Meena.`
+        advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Tejendraa k meena.`
       });
       setIsCalculating(false);
     }, 600);
@@ -258,7 +258,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         p2Lp: lp2,
         matchScore: matchScore,
         harmonyStatus: matchScore > 80 ? 'Excellent Cosmic Harmony' : 'Good Compatibility - Minor Alignment Needed',
-        advice: `Life Path ${lp1} & Life Path ${lp2} have a ${matchScore}% cosmic resonance. Book Couples Numerology with Teiendraa K Meena to deepen mutual understanding.`
+        advice: `Life Path ${lp1} & Life Path ${lp2} have a ${matchScore}% cosmic resonance. Book Couples Numerology with Tejendraa k meena to deepen mutual understanding.`
       });
       setIsCalculating(false);
     }, 600);
@@ -353,7 +353,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Teiendraa K Meena"
+                  placeholder="e.g. Tejendraa k meena"
                   value={leadName}
                   onChange={(e) => setLeadName(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
@@ -437,7 +437,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Teiendraa K Meena"
+                    placeholder="e.g. Tejendraa k meena"
                     value={nameInput}
                     onChange={(e) => setNameInput(e.target.value)}
                     className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
@@ -605,7 +605,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
                 onClick={onBookConsultation}
                 className="flex-1 py-3.5 px-6 rounded-xl bg-[#D4AF37] hover:bg-[#c49f2b] text-[#1E3A8A] font-extrabold text-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
-                Book Consultation with Teiendraa K Meena
+                Book Consultation with Tejendraa k meena
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button

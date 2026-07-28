@@ -32,7 +32,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
             </p>
 
             <p className="text-xs text-slate-300 leading-relaxed">
-              Professional Corporate, Business, Career, Couples, Students, and Parenting Numerology guidance by Teiendraa K Meena.
+              Professional Corporate, Business, Career, Couples, Students, and Parenting Numerology guidance by Tejendraa k meena.
             </p>
 
             {/* Follow Us Row */}
@@ -68,7 +68,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
               </li>
               <li>
                 <button onClick={() => setActiveTab('about')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
-                  About Teiendraa K Meena
+                  About Tejendraa k meena
                 </button>
               </li>
               <li>
@@ -77,7 +77,7 @@ export default function Footer({ setActiveTab, onOpenConsultation }) {
                 </button>
               </li>
               <li>
-                <button onClick={() => setActiveTab('reports')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                <button onClick={() => setActiveTab('services')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
                   Numerology Reports Catalog
                 </button>
               </li>

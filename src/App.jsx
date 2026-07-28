@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import FloatingCTA from './components/FloatingCTA';
@@ -7,7 +7,6 @@ import ConsultationModal from './components/ConsultationModal';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
-import ReportsPage from './pages/ReportsPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import AdminPanel from './pages/AdminPanel';
@@ -18,8 +17,25 @@ import UpdatesPage from './pages/UpdatesPage';
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [isConsultationOpen, setIsConsultationOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const saved = localStorage.getItem('tejendra_current_user_v1');
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      return null;
+    }
+  });
   const [bookingParams, setBookingParams] = useState(null);
+
+  useEffect(() => {
+    try {
+      if (currentUser) {
+        localStorage.setItem('tejendra_current_user_v1', JSON.stringify(currentUser));
+      } else {
+        localStorage.removeItem('tejendra_current_user_v1');
+      }
+    } catch (e) {}
+  }, [currentUser]);
 
   const handleOpenConsultation = (params) => {
     setBookingParams(params || null);
@@ -72,11 +88,7 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'reports' && (
-          <ReportsPage 
-            onOpenConsultation={handleOpenConsultation}
-          />
-        )}
+
 
         {activeTab === 'testimonials' && (
           <HomePage 

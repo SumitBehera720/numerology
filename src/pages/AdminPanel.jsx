@@ -3,13 +3,35 @@ import {
   Users, Calendar, Search, ShieldCheck, Lock, LogOut, CheckCircle2, 
   Sparkles, MessageSquare, Phone, Mail, RefreshCw, Trash2, ArrowRight
 } from 'lucide-react';
-import { brandInfo, getRegisteredUsers, getConsultationBookings } from '../data/tejendraData';
+import { 
+  brandInfo, 
+  getRegisteredUsers, 
+  getConsultationBookings, 
+  updateConsultationBooking, 
+  deleteConsultationBooking,
+  getUpdatesData,
+  saveUpdatePost,
+  deleteUpdatePost
+} from '../data/tejendraData';
 
 export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }) {
   const [activeAdminTab, setActiveAdminTab] = useState('bookings');
   const [users, setUsers] = useState([]);
   const [bookings, setBookings] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  const [newPost, setNewPost] = useState({
+    type: 'reel',
+    title: '',
+    duration: '',
+    thumbnail: '/logo.jpeg',
+    description: '',
+    link: 'https://instagram.com/numerologybytejendra',
+    readTime: '',
+    category: 'Educational',
+    excerpt: ''
+  });
 
   const isAdmin = currentUser?.role === 'admin';
 
@@ -20,6 +42,61 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
   const refreshData = () => {
     setUsers(getRegisteredUsers());
     setBookings(getConsultationBookings());
+    setPosts(getUpdatesData());
+  };
+
+  const handleUpdateStatus = (id, newStatus) => {
+    updateConsultationBooking(id, { status: newStatus });
+    refreshData();
+  };
+
+  const handleDeleteBooking = (id) => {
+    if (window.confirm("Are you sure you want to delete this booking lead?")) {
+      deleteConsultationBooking(id);
+      refreshData();
+    }
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert("Image size should be less than 2MB for storage.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setNewPost(prev => ({ ...prev, thumbnail: reader.result }));
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleAddPost = (e) => {
+    e.preventDefault();
+    if (!newPost.title) return;
+    saveUpdatePost(newPost);
+    setNewPost({
+      type: 'reel',
+      title: '',
+      duration: '',
+      thumbnail: '/logo.jpeg',
+      description: '',
+      link: 'https://instagram.com/numerologybytejendra',
+      readTime: '',
+      category: 'Educational',
+      excerpt: ''
+    });
+    refreshData();
+    alert("Post added successfully!");
+  };
+
+  const handleDeletePost = (postId) => {
+    if (window.confirm("Are you sure you want to delete this post?")) {
+      deleteUpdatePost(postId);
+      refreshData();
+    }
   };
 
   const filteredUsers = users.filter(u => 
@@ -37,7 +114,7 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
 
   const handleWhatsAppClient = (phone, name, service) => {
     const cleanPhone = phone.replace(/\D/g, '');
-    const msg = `Hello ${name}, this is Teiendraa K Meena Ji's office regarding your ${service} consultation booking. We have received your request.`;
+    const msg = `Hello ${name}, this is Tejendraa k meena Ji's office regarding your ${service} consultation booking. We have received your request.`;
     window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -145,6 +222,14 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
                 >
                   Registered Users ({users.length})
                 </button>
+                <button
+                  onClick={() => setActiveAdminTab('updates')}
+                  className={`py-2 px-4 rounded-lg transition-all cursor-pointer ${
+                    activeAdminTab === 'updates' ? 'bg-[#1E3A8A] text-white shadow-sm' : 'text-slate-600'
+                  }`}
+                >
+                  Manage Updates Posts ({posts.length})
+                </button>
               </div>
 
               <div className="relative w-full sm:w-72">
@@ -209,18 +294,36 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
                               <div className="text-[10px] text-slate-400">{b.timeSlot || 'Morning'}</div>
                             </td>
                             <td className="p-4">
-                              <span className="inline-block px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 font-extrabold text-[10px] border border-emerald-200">
-                                {b.advanceDeposit || '₹1,000 Advance'}
-                              </span>
+                              <select
+                                value={b.status || 'Active Request'}
+                                onChange={(e) => handleUpdateStatus(b.id, e.target.value)}
+                                className="px-2.5 py-1 rounded-full text-[10px] font-extrabold border outline-none bg-emerald-50 text-emerald-800 border-emerald-200 cursor-pointer"
+                              >
+                                <option value="Active Request">Active Request</option>
+                                <option value="Deposit Pending">Deposit Pending</option>
+                                <option value="20% Deposit Paid">20% Deposit Paid</option>
+                                <option value="Fully Paid">Fully Paid</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                              </select>
                             </td>
                             <td className="p-4 text-center">
-                              <button
-                                onClick={() => handleWhatsAppClient(b.phone, b.userName || b.name, b.service)}
-                                className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-[11px] rounded-lg transition-all flex items-center justify-center gap-1 mx-auto"
-                              >
-                                <MessageSquare className="w-3.5 h-3.5" />
-                                WhatsApp Client
-                              </button>
+                              <div className="flex gap-2 justify-center">
+                                <button
+                                  onClick={() => handleWhatsAppClient(b.phone, b.userName || b.name, b.service)}
+                                  className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-[11px] rounded-lg transition-all flex items-center justify-center gap-1 cursor-pointer"
+                                >
+                                  <MessageSquare className="w-3.5 h-3.5" />
+                                  WhatsApp
+                                </button>
+                                <button
+                                  onClick={() => handleDeleteBooking(b.id)}
+                                  className="p-1.5 bg-red-100 hover:bg-red-200 text-red-600 rounded-lg transition-all cursor-pointer border border-red-200/45"
+                                  title="Delete lead"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </div>
                             </td>
                           </tr>
                         ))
@@ -248,9 +351,9 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
                     <thead className="bg-[#F8F6F1] text-[#1E3A8A] font-extrabold uppercase text-[11px] tracking-wider border-b border-slate-200">
                       <tr>
                         <th className="p-4">Client Name</th>
-                        <th className="p-4">Email Address</th>
                         <th className="p-4">Mobile Number</th>
                         <th className="p-4">Date of Birth</th>
+                        <th className="p-4">Password</th>
                         <th className="p-4">Registered Date</th>
                       </tr>
                     </thead>
@@ -267,14 +370,14 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
                             <td className="p-4 font-bold text-slate-900">
                               {u.name}
                             </td>
-                            <td className="p-4 font-medium text-slate-700">
-                              {u.email}
-                            </td>
                             <td className="p-4 font-semibold text-slate-800">
                               {u.phone}
                             </td>
                             <td className="p-4 text-slate-600">
                               {u.dob || 'Not provided'}
+                            </td>
+                            <td className="p-4 font-mono text-slate-700">
+                              {u.password || 'N/A (Seed)'}
                             </td>
                             <td className="p-4 text-slate-500">
                               {u.registeredAt ? new Date(u.registeredAt).toLocaleDateString() : 'Recent'}
@@ -285,6 +388,219 @@ export default function AdminPanel({ setActiveTab, currentUser, setCurrentUser }
                     </tbody>
                   </table>
                 </div>
+              </div>
+            )}
+
+            {/* 3. MANAGE UPDATES POSTS */}
+            {activeAdminTab === 'updates' && (
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fadeIn">
+                
+                {/* Add New Post Form */}
+                <div className="lg:col-span-1 bg-white rounded-3xl p-6 shadow-lg border border-slate-200 space-y-4">
+                  <h3 className="text-lg font-extrabold font-cinzel text-[#1E3A8A] border-b border-slate-100 pb-3">
+                    Add New Update / Reel
+                  </h3>
+                  
+                  <form onSubmit={handleAddPost} className="space-y-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                        Post Type
+                      </label>
+                      <select
+                        value={newPost.type}
+                        onChange={(e) => setNewPost({ ...newPost, type: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:outline-none focus:border-[#D4AF37]"
+                      >
+                        <option value="reel">Instagram Video Reel</option>
+                        <option value="article">Blog Article / News</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                        Post Title *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Favorable Mobile Numbers"
+                        value={newPost.title}
+                        onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+                        className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                        Thumbnail Image
+                      </label>
+                      <div className="space-y-2">
+                        {/* File Upload Input */}
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#1E3A8A]/10 file:text-[#1E3A8A] hover:file:bg-[#1E3A8A]/20 cursor-pointer"
+                        />
+                        {/* Text URL Option (fallback) */}
+                        <input
+                          type="text"
+                          placeholder="Or paste image URL (e.g. /logo.jpeg)"
+                          value={newPost.thumbnail.startsWith('data:image') ? '' : newPost.thumbnail}
+                          onChange={(e) => setNewPost({ ...newPost, thumbnail: e.target.value })}
+                          className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                        />
+                        {/* Preview */}
+                        {newPost.thumbnail && (
+                          <div className="flex items-center gap-2 mt-1 bg-slate-50 p-2 rounded-xl border border-slate-200">
+                            <img
+                              src={newPost.thumbnail}
+                              alt="Preview"
+                              className="w-10 h-10 object-cover rounded-lg border border-slate-300 animate-fadeIn"
+                            />
+                            <span className="text-[10px] text-slate-500 truncate max-w-[120px]">
+                              {newPost.thumbnail.startsWith('data:image') ? 'Uploaded Image' : 'URL Image'}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => setNewPost({ ...newPost, thumbnail: '/logo.jpeg' })}
+                              className="text-[10px] text-red-500 font-bold hover:underline ml-auto cursor-pointer"
+                            >
+                              Reset
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {newPost.type === 'reel' ? (
+                      <>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                            Video Duration
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. 0:58"
+                            value={newPost.duration}
+                            onChange={(e) => setNewPost({ ...newPost, duration: e.target.value })}
+                            className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                            Instagram URL Link
+                          </label>
+                          <input
+                            type="text"
+                            value={newPost.link}
+                            onChange={(e) => setNewPost({ ...newPost, link: e.target.value })}
+                            className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                            Short Description
+                          </label>
+                          <textarea
+                            rows="3"
+                            value={newPost.description}
+                            onChange={(e) => setNewPost({ ...newPost, description: e.target.value })}
+                            className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                            Blog Category
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. Educational, Corporate"
+                            value={newPost.category}
+                            onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}
+                            className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                            Read Time
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="e.g. 5 Mins Read"
+                            value={newPost.readTime}
+                            onChange={(e) => setNewPost({ ...newPost, readTime: e.target.value })}
+                            className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                            Excerpt / Summary
+                          </label>
+                          <textarea
+                            rows="3"
+                            value={newPost.excerpt}
+                            onChange={(e) => setNewPost({ ...newPost, excerpt: e.target.value })}
+                            className="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-[#D4AF37]"
+                          />
+                        </div>
+                      </>
+                    )}
+
+                    <button
+                      type="submit"
+                      className="btn-primary w-full py-3 text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      <Sparkles className="w-4 h-4 text-white" />
+                      Add Post
+                    </button>
+                  </form>
+                </div>
+
+                {/* List & Manage Current Posts */}
+                <div className="lg:col-span-2 bg-white rounded-3xl p-6 shadow-lg border border-slate-200 space-y-4">
+                  <h3 className="text-lg font-extrabold font-cinzel text-[#1E3A8A] border-b border-slate-100 pb-3">
+                    Current Posts & Articles ({posts.length})
+                  </h3>
+
+                  <div className="space-y-3 max-h-[600px] overflow-y-auto pr-1">
+                    {posts.length === 0 ? (
+                      <p className="text-xs text-slate-400 text-center py-6 font-medium">No posts found.</p>
+                    ) : (
+                      posts.map((p) => (
+                        <div key={p.id} className="p-4 bg-[#F8F6F1] rounded-2xl border border-slate-200 flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-3">
+                            <img
+                              src={p.thumbnail || '/logo.jpeg'}
+                              alt="Thumbnail"
+                              className="w-12 h-12 rounded-xl object-cover border border-slate-300"
+                            />
+                            <div className="text-left">
+                              <span className="text-[9px] font-extrabold uppercase text-[#D4AF37]">
+                                {p.type === 'reel' ? '🎥 reel' : '✍️ article'}
+                              </span>
+                              <h4 className="text-xs font-bold text-slate-900 line-clamp-1">{p.title}</h4>
+                              <p className="text-[10px] text-slate-500">{p.date}</p>
+                            </div>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => handleDeletePost(p.id)}
+                            className="p-2 bg-red-50 hover:bg-red-100 text-red-600 rounded-xl transition-all cursor-pointer border border-red-200/50"
+                            title="Delete Post"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+
               </div>
             )}
 

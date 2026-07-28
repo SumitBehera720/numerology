@@ -8,9 +8,8 @@ import { brandInfo, servicesList } from '../data/tejendraData';
 
 const NAV_LINKS = [
   { id: 'home',         label: 'Home', icon: Home },
-  { id: 'about',        label: 'About Teiendraa', icon: User },
+  { id: 'about',        label: 'About Tejendraa', icon: User },
   { id: 'services',     label: 'Services', icon: Compass, hasDropdown: true },
-  { id: 'reports',      label: 'Products', icon: FileText },
   { id: 'testimonials', label: 'Testimonials', icon: Star },
   { id: 'calculator',   label: 'Free Calculator', icon: Sparkles },
   { id: 'updates',      label: 'Updates', icon: BookOpen },
@@ -54,7 +53,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
   };
 
   const whatsappUrl = `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(
-    'Hello Teiendraa K Meena Ji, I have a question regarding Numerology consultation.'
+    'Hello Tejendraa k meena Ji, I have a question regarding Numerology consultation.'
   )}`;
 
   return (
@@ -224,7 +223,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
             <div className="flex items-center gap-3">
               <img 
                 src="/numerology pic.jpg" 
-                alt="Teiendraa K Meena" 
+                alt="Tejendraa k meena" 
                 className="w-10 h-10 rounded-xl object-cover object-top border border-[#D4AF37]" 
               />
               <div className="flex flex-col text-left">
@@ -328,18 +327,6 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
                   )}
                 </div>
 
-                <button 
-                  onClick={() => go('reports')} 
-                  className="w-full p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-sm flex items-center justify-between font-bold text-slate-900 cursor-pointer"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-xl bg-[#D4AF37]/15 text-[#D4AF37]">
-                      <BookOpen className="w-4 h-4" />
-                    </div>
-                    <span>Numerology Reports</span>
-                  </div>
-                  <ChevronDown className="w-4 h-4 text-slate-400 -rotate-90" />
-                </button>
 
                 <button 
                   onClick={() => go('calculator')} 

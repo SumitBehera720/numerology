@@ -1,68 +1,68 @@
 import React, { useState } from 'react';
-import { User, Lock, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { User, Lock, ArrowRight, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 import { brandInfo, getRegisteredUsers, saveRegisteredUser } from '../data/tejendraData';
 
 export default function LoginPage({ setActiveTab, onOpenConsultation, setCurrentUser, currentUser }) {
-  const [loginMethod, setLoginMethod] = useState('email');
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
+    setError('');
     setIsLoading(true);
 
     setTimeout(() => {
-      const cleanId = identifier.trim().toLowerCase();
+      const cleanId = identifier.trim();
       const cleanPass = password.trim();
 
       // SILENT ADMIN CREDENTIAL CHECK
       if (
-        cleanId === 'admin' || 
-        cleanId === 'admin@tejendra.com' || 
-        cleanId === 'tejendra' ||
-        cleanPass === 'admin123' || 
-        cleanPass === 'tejendra123'
+        cleanId.toLowerCase() === 'admin' || 
+        cleanId.toLowerCase() === 'admin@tejendra.com' || 
+        cleanId.toLowerCase() === 'tejendra'
       ) {
-        const adminSession = {
-          name: 'Teiendraa K Meena',
-          email: 'tejendrameena7@gmail.com',
-          phone: '8107241463',
-          role: 'admin'
-        };
-        setCurrentUser(adminSession);
-        setIsLoading(false);
-        setActiveTab('admin');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
+        if (cleanPass === 'admin123' || cleanPass === 'tejendra123') {
+          const adminSession = {
+            name: 'Tejendraa k meena',
+            email: 'tejendrameena7@gmail.com',
+            phone: '8107241463',
+            role: 'admin'
+          };
+          setCurrentUser(adminSession);
+          setIsLoading(false);
+          setActiveTab('admin');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          return;
+        } else {
+          setError('Invalid Admin credentials.');
+          setIsLoading(false);
+          return;
+        }
       }
 
       // STANDARD CLIENT AUTHENTICATION
       const registeredUsers = getRegisteredUsers();
       const existing = registeredUsers.find(u => 
-        (u.email && u.email.toLowerCase() === cleanId) || 
-        u.phone === identifier ||
-        u.phone?.replace(/\D/g, '').includes(identifier.replace(/\D/g, ''))
+        (u.phone === cleanId || u.phone?.replace(/\D/g, '').includes(cleanId.replace(/\D/g, '')))
       );
 
-      let sessionUser;
       if (existing) {
-        sessionUser = { ...existing, role: 'client' };
+        if (existing.password === cleanPass || !existing.password) {
+          const sessionUser = { ...existing, role: 'client' };
+          setCurrentUser(sessionUser);
+          setIsLoading(false);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          setError('Incorrect password. Please try again.');
+          setIsLoading(false);
+        }
       } else {
-        // Register client on the fly if not exists
-        sessionUser = {
-          name: identifier.split('@')[0] || 'Client User',
-          email: identifier.includes('@') ? identifier : '',
-          phone: identifier.includes('@') ? '' : identifier,
-          dob: '',
-          role: 'client'
-        };
-        saveRegisteredUser(sessionUser);
+        setError('No registered account found with this mobile number. Please register first.');
+        setIsLoading(false);
       }
-
-      setCurrentUser(sessionUser);
-      setIsLoading(false);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 600);
   };
 
@@ -83,42 +83,26 @@ export default function LoginPage({ setActiveTab, onOpenConsultation, setCurrent
           </p>
         </div>
 
+        {error && (
+          <div className="bg-red-50 border border-red-300 text-red-700 text-xs p-3 rounded-xl mb-4 font-bold text-center">
+            {error}
+          </div>
+        )}
+
         {!currentUser ? (
           <form onSubmit={handleLogin} className="space-y-5">
             
-            {/* Method Toggle */}
-            <div className="flex bg-slate-100 p-1 rounded-xl text-xs font-bold">
-              <button
-                type="button"
-                onClick={() => setLoginMethod('email')}
-                className={`flex-1 py-2 rounded-lg transition-all cursor-pointer ${
-                  loginMethod === 'email' ? 'bg-[#1E3A8A] text-white shadow-sm' : 'text-slate-600'
-                }`}
-              >
-                Email Address
-              </button>
-              <button
-                type="button"
-                onClick={() => setLoginMethod('phone')}
-                className={`flex-1 py-2 rounded-lg transition-all cursor-pointer ${
-                  loginMethod === 'phone' ? 'bg-[#1E3A8A] text-white shadow-sm' : 'text-slate-600'
-                }`}
-              >
-                Mobile Number
-              </button>
-            </div>
-
             {/* Input Identifier */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">
-                {loginMethod === 'phone' ? 'Mobile Number' : 'Email Address'}
+                Mobile Number
               </label>
               <div className="relative">
                 <User className="w-5 h-5 absolute left-3 top-3 text-slate-400" />
                 <input
-                  type={loginMethod === 'phone' ? 'tel' : 'email'}
+                  type="tel"
                   required
-                  placeholder={loginMethod === 'phone' ? '+91 8107241463' : 'Email Address'}
+                  placeholder="e.g. +91 8107241463"
                   value={identifier}
                   onChange={(e) => setIdentifier(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#D4AF37] text-sm font-medium"
@@ -139,13 +123,21 @@ export default function LoginPage({ setActiveTab, onOpenConsultation, setCurrent
               <div className="relative">
                 <Lock className="w-5 h-5 absolute left-3 top-3 text-slate-400" />
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   required
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#D4AF37] text-sm font-medium"
+                  className="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-300 focus:outline-none focus:border-[#D4AF37] text-sm font-medium"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer"
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 
@@ -195,9 +187,15 @@ export default function LoginPage({ setActiveTab, onOpenConsultation, setCurrent
                 <span className="font-bold text-[#1E3A8A] uppercase">Active Client</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500">Email:</span>
-                <span className="font-semibold text-slate-800">{currentUser.email}</span>
+                <span className="text-slate-500">Mobile Number:</span>
+                <span className="font-semibold text-slate-800">{currentUser.phone}</span>
               </div>
+              {currentUser.dob && (
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Date of Birth:</span>
+                  <span className="font-semibold text-slate-800">{currentUser.dob}</span>
+                </div>
+              )}
             </div>
 
             <div className="space-y-3">

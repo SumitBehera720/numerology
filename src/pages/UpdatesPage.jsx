@@ -1,82 +1,15 @@
 import React, { useState } from 'react';
 import { Play, BookOpen, Clock, Heart, Share2, Compass, Film, MessageSquare, Sparkles } from 'lucide-react';
 import SolarSystemBackground from '../components/SolarSystemBackground';
-
-const UPDATES_DATA = [
-  {
-    id: 1,
-    type: 'reel',
-    title: 'Is your Mobile Number blocking your financial cash flow?',
-    views: '12.4K Views',
-    likes: '1.2K Likes',
-    duration: '0:58',
-    thumbnail: '/logo.jpeg',
-    description: 'Quick check: If your mobile number digits sum up to 4 or 8, discover why it might cause financial delays and how to remedy it.',
-    link: 'https://instagram.com/numerologybytejendra'
-  },
-  {
-    id: 2,
-    type: 'article',
-    title: 'Chaldean vs Pythagorean Numerology: The Core Differences Explained',
-    readTime: '5 Mins Read',
-    date: 'July 24, 2026',
-    author: 'Teiendraa K Meena',
-    excerpt: 'Understanding the origins and vibrational mappings of Chaldean and Pythagorean matrices to correctly calculate your personal destiny grid.',
-    thumbnail: '/numerology pic.jpg',
-    category: 'Educational'
-  },
-  {
-    id: 3,
-    type: 'reel',
-    title: 'Calculate your Chaldean Name Number in 15 seconds',
-    views: '8.9K Views',
-    likes: '840 Likes',
-    duration: '0:45',
-    thumbnail: '/numerology pic.jpg',
-    description: 'Learn the ancient Chaldean character mapping to sum your name letters and find your identity vibration score.',
-    link: 'https://instagram.com/numerologybytejendra'
-  },
-  {
-    id: 4,
-    type: 'article',
-    title: 'Corporate Logo Design: The Numerology and Planetary Alignment of Brand Colors',
-    readTime: '7 Mins Read',
-    date: 'July 20, 2026',
-    author: 'Teiendraa K Meena',
-    excerpt: 'How business names, logo grid dimensions, and color wave frequencies interact with a founder\'s personal Life Path and Destiny numbers.',
-    thumbnail: '/logo.jpeg',
-    category: 'Corporate'
-  },
-  {
-    id: 5,
-    type: 'reel',
-    title: 'Life Path 7: The Spiritual Seeker\'s Career Guidelines',
-    views: '15.2K Views',
-    likes: '2.1K Likes',
-    duration: '0:59',
-    thumbnail: '/tejendra_wisdom.jpeg',
-    description: 'Are you a Life Path 7? Discover why career options in data analysis, spiritual consulting, and research are your cosmic sweet spot.',
-    link: 'https://instagram.com/numerologybytejendra'
-  },
-  {
-    id: 6,
-    type: 'article',
-    title: 'Selecting Favorable Business Registration Dates in 2026',
-    readTime: '4 Mins Read',
-    date: 'July 15, 2026',
-    author: 'Teiendraa K Meena',
-    excerpt: 'An auspicious registration date acts as the foundational birth grid of your company. Avoid mercury retrograde windows and select peak double-vibration dates.',
-    thumbnail: '/logo.jpeg',
-    category: 'Business'
-  }
-];
+import { getUpdatesData } from '../data/tejendraData';
 
 export default function UpdatesPage() {
   const [filter, setFilter] = useState('all');
+  const [updates, setUpdates] = useState(() => getUpdatesData());
 
   const filteredData = filter === 'all' 
-    ? UPDATES_DATA 
-    : UPDATES_DATA.filter(item => item.type === filter);
+    ? updates 
+    : updates.filter(item => item.type === filter);
 
   return (
     <div className="min-h-screen bg-[#09031a] text-white py-12 px-4 sm:px-6 lg:px-8 text-left relative overflow-hidden">
@@ -95,7 +28,7 @@ export default function UpdatesPage() {
               Daily Reels & Updates
             </h1>
             <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-poppins">
-              Stay aligned with daily numerology tips, cosmic video reels, spelling correction rules, and executive articles written by Teiendraa K Meena.
+              Stay aligned with daily numerology tips, cosmic video reels, spelling correction rules, and executive articles written by Tejendraa k meena.
             </p>
           </div>
         </div>

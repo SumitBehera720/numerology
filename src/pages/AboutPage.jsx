@@ -16,7 +16,7 @@ export default function AboutPage({ onOpenConsultation }) {
           <div className="md:col-span-4 flex justify-center">
             <img 
               src="/tejendra_new.jpeg" 
-              alt="Teiendraa K Meena" 
+              alt="Tejendraa k meena" 
               className="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl object-cover object-top border-4 border-[#C59B27] shadow-2xl" 
             />
           </div>
@@ -26,13 +26,13 @@ export default function AboutPage({ onOpenConsultation }) {
               About The Master Numerologist
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold font-cinzel text-white">
-              Teiendraa K Meena
+              Tejendraa k meena
             </h1>
             <p className="text-sm font-bold text-slate-300">
               Founder & Chief Numerology Strategist · NUMEROLOGY by TEJENDRA
             </p>
             <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
-              Teiendraa K Meena is the Founder of <strong>NUMEROLOGY by TEJENDRA</strong>, a modern numerology consulting practice dedicated to helping individuals, professionals, entrepreneurs, and business leaders make informed life and career decisions through the wisdom of numbers.
+              Tejendraa k meena is the Founder of <strong>NUMEROLOGY by TEJENDRA</strong>, a modern numerology consulting practice dedicated to helping individuals, professionals, entrepreneurs, and business leaders make informed life and career decisions through the wisdom of numbers.
             </p>
           </div>
  
@@ -48,7 +48,7 @@ export default function AboutPage({ onOpenConsultation }) {
               Corporate Leadership & Approach
             </h3>
             <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-              With <strong>11+ years of corporate leadership experience</strong>, Teiendraa brings a unique combination of analytical thinking, strategic decision-making, and intuitive guidance to every consultation. 
+              With <strong>11+ years of corporate leadership experience</strong>, Tejendraa brings a unique combination of analytical thinking, strategic decision-making, and intuitive guidance to every consultation. 
             </p>
             <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
               His professional journey enables him to interpret numerology not only from a personal and spiritual perspective but also through the lens of career growth, leadership, business strategy, and organizational success.
@@ -108,7 +108,7 @@ export default function AboutPage({ onOpenConsultation }) {
             <div className="space-y-4">
               <h4 className="text-base font-bold text-[#C59B27] font-cinzel">Specialized Focus</h4>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Teiendraa specializes in <strong>Corporate Numerology, Business Numerology, Career Numerology, Personal Numerology, Name Analysis, and Strategic Decision Guidance</strong>. 
+                Tejendraa specializes in <strong>Corporate Numerology, Business Numerology, Career Numerology, Personal Numerology, Name Analysis, and Strategic Decision Guidance</strong>. 
               </p>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 His approach combines traditional Pythagorean and Chaldean numerology with practical insights, helping clients gain clarity about their strengths, opportunities, relationships, career direction, business branding, and life purpose.
@@ -118,7 +118,7 @@ export default function AboutPage({ onOpenConsultation }) {
             <div className="space-y-4">
               <h4 className="text-base font-bold text-[#C59B27] font-cinzel">What Sets Him Apart</h4>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                What truly sets Teiendraa apart is his <strong>deep listening ability, intuitive analysis, logical interpretation, and ethical consulting approach</strong>. 
+                What truly sets Tejendraa apart is his <strong>deep listening ability, intuitive analysis, logical interpretation, and ethical consulting approach</strong>. 
               </p>
               <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                 Rather than offering generic predictions, he believes in understanding each individual's unique numerical blueprint and providing practical, personalized guidance that empowers clients to make confident decisions.

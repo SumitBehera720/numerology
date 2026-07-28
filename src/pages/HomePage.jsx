@@ -47,7 +47,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
 
               {/* Body Copy */}
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl font-poppins animate-text delay-400">
-                Unlock your cosmic blueprint with <strong>Teiendraa K Meena</strong>. Transform your personal energy, commercial enterprise, career milestones, and relationship harmony with high-vibration Chaldean & Pythagorean numerology.
+                Unlock your cosmic blueprint with <strong>Tejendraa k meena</strong>. Transform your personal energy, commercial enterprise, career milestones, and relationship harmony with high-vibration Chaldean & Pythagorean numerology.
               </p>
 
               {/* Action Buttons */}
@@ -99,7 +99,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 <div className="relative mb-4 flex justify-center">
                   <img 
                     src="/tejendra_new.jpeg" 
-                    alt="Teiendraa K Meena - Master Numerologist" 
+                    alt="Tejendraa k meena - Master Numerologist" 
                     className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl object-cover object-top border-4 border-[#D4AF37] shadow-xl"
                   />
                   <div className="absolute -bottom-2 bg-[#1E3A8A] text-[#D4AF37] text-[10px] font-extrabold px-3 py-0.5 rounded-full border border-[#D4AF37] shadow">
@@ -109,7 +109,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
 
                 <div className="text-center pt-2">
                   <h3 className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
-                    Teiendraa K Meena
+                    Tejendraa k meena
                   </h3>
                   <p className="text-xs font-bold text-[#D4AF37] uppercase tracking-widest mt-1">
                     Master Numerologist & Business Strategist
@@ -169,7 +169,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 <div className="absolute -inset-1.5 bg-gradient-to-r from-[#D4AF37] to-[#1E3A8A] rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
                 <img 
                   src="/tejendra_wisdom.jpeg" 
-                  alt="Teiendraa K Meena - Wisdom, Intuition, and Spiritual Guidance" 
+                  alt="Tejendraa k meena - Wisdom, Intuition, and Spiritual Guidance" 
                   className="relative rounded-3xl object-cover border-4 border-white shadow-2xl w-full aspect-[4/5] object-center"
                 />
               </div>
@@ -184,7 +184,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 Wisdom, Intuition & <br />Spiritual Guidance
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Connect with the deep cosmic frequencies of your life blueprint. Under the guidance of **Teiendraa K Meena**, discover how numbers reveal hidden planetary vibrations that govern your daily actions, commercial ventures, and relationship harmony.
+                Connect with the deep cosmic frequencies of your life blueprint. Under the guidance of **Tejendraa k meena**, discover how numbers reveal hidden planetary vibrations that govern your daily actions, commercial ventures, and relationship harmony.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-xs font-semibold text-slate-800">
@@ -312,10 +312,10 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-6">
             {reportsCatalog.map((rep, idx) => (
               <ScrollReveal key={rep.id} delay={idx * 70}>
-                <div className="bg-[#F8F6F1] rounded-2xl p-6 border border-[#D4AF37]/40 flex flex-col justify-between shadow-sm h-full">
+                <div className="bg-[#F8F6F1] rounded-2xl p-6 border border-[#D4AF37]/40 flex flex-col justify-between shadow-sm h-full hover:border-[#1E3A8A] transition-all duration-300">
                   <div>
                     <span className="text-[10px] font-extrabold uppercase bg-[#D4AF37] text-white px-2.5 py-0.5 rounded">
                       {rep.tag}
@@ -329,9 +329,14 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                     </p>
                   </div>
                   <div className="border-t border-slate-200 pt-4 flex items-center justify-between">
-                    <span className="text-lg font-extrabold font-cinzel text-[#1E3A8A]">{rep.price}</span>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-slate-400 line-through font-semibold leading-none mb-0.5">
+                        {rep.originalPrice}
+                      </span>
+                      <span className="text-lg font-extrabold font-cinzel text-[#1E3A8A] leading-none">{rep.price}</span>
+                    </div>
                     <button
-                      onClick={onOpenConsultation}
+                      onClick={() => onOpenConsultation({ service: rep.title })}
                       className="btn-primary py-2 px-3 text-xs font-extrabold cursor-pointer"
                     >
                       Order Report
@@ -416,7 +421,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 Book An Appointment
               </h2>
               <p className="text-slate-600 text-sm max-w-xl mx-auto mt-2 font-medium">
-                Select your preferred meeting type and duration to schedule a consultation slot with Teiendraa K Meena.
+                Select your preferred meeting type and duration to schedule a consultation slot with Tejendraa k meena.
               </p>
             </div>
           </ScrollReveal>
@@ -446,25 +451,27 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 </div>
 
                 <div className="pt-4 border-t border-slate-200">
-                  <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-3.5">
+                  <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-4">
                     Book your Appointment for:
                   </p>
-                  <div className="flex justify-center gap-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <button
                       onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '30 Minutes' })}
-                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A]"
                       title="Book 30 Minutes Online Session"
                     >
-                      <span className="text-base font-extrabold leading-none">30</span>
-                      <span className="text-[8px] font-bold">Minutes</span>
+                      <span className="text-xs font-black text-[#1E3A8A] uppercase tracking-wide">30 Minutes</span>
+                      <span className="text-[#1E3A8A] font-extrabold text-base mt-1">₹2,599</span>
+                      <span className="text-slate-400 line-through text-[10px] font-semibold">₹5,999</span>
                     </button>
                     <button
                       onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '60 Minutes' })}
-                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A]"
                       title="Book 60 Minutes Online Session"
                     >
-                      <span className="text-base font-extrabold leading-none">60</span>
-                      <span className="text-[8px] font-bold">Minutes</span>
+                      <span className="text-xs font-black text-[#1E3A8A] uppercase tracking-wide">60 Minutes</span>
+                      <span className="text-[#1E3A8A] font-extrabold text-base mt-1">₹7,999</span>
+                      <span className="text-slate-400 line-through text-[10px] font-semibold">₹14,999</span>
                     </button>
                   </div>
                 </div>
@@ -494,25 +501,28 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 </div>
 
                 <div className="pt-4 border-t border-slate-200">
-                  <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-3.5">
+                  <p className="text-xs font-black text-slate-700 uppercase tracking-widest mb-4">
                     Book your Appointment for:
                   </p>
-                  <div className="flex justify-center gap-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <button
                       onClick={() => onOpenConsultation({ mode: 'Face to Face Office Meeting', duration: '30 Minutes' })}
-                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A]"
                       title="Book 30 Minutes In-Person Session"
                     >
-                      <span className="text-base font-extrabold leading-none">30</span>
-                      <span className="text-[8px] font-bold">Minutes</span>
+                      <span className="text-xs font-black text-[#1E3A8A] uppercase tracking-wide">30 Minutes</span>
+                      <span className="text-[#1E3A8A] font-extrabold text-base mt-1">₹4,999</span>
+                      <span className="text-slate-400 line-through text-[10px] font-semibold">₹9,999</span>
                     </button>
                     <button
                       onClick={() => onOpenConsultation({ mode: 'Face to Face Office Meeting', duration: '60 Minutes' })}
-                      className="w-16 h-16 rounded-full bg-[#1E3A8A]/10 hover:bg-[#D4AF37] hover:text-[#1E3A8A] border-2 border-[#D4AF37] flex flex-col items-center justify-center text-[10px] font-black text-[#1E3A8A] transition-all cursor-pointer hover:scale-110 shadow-sm"
+                      className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A] relative overflow-hidden"
                       title="Book 60 Minutes In-Person Session"
                     >
-                      <span className="text-base font-extrabold leading-none">60</span>
-                      <span className="text-[8px] font-bold">Minutes</span>
+                      <div className="absolute top-0 right-0 bg-[#D4AF37] text-[7px] text-[#1E3A8A] font-black px-1.5 py-0.5 rounded-bl uppercase tracking-wider">Offer</div>
+                      <span className="text-xs font-black text-[#1E3A8A] uppercase tracking-wide">60 Minutes</span>
+                      <span className="text-[#1E3A8A] font-extrabold text-base mt-1">₹9,999</span>
+                      <span className="text-slate-400 line-through text-[10px] font-semibold">₹14,999</span>
                     </button>
                   </div>
                 </div>

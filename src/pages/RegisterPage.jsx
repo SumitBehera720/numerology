@@ -11,11 +11,13 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
     countryCode: '+91',
     phone: '',
     dob: '',
+    password: '',
     agreeTerms: true
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -35,13 +37,15 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
       saveRegisteredUser({
         name: formData.name,
         phone: fullPhone,
-        dob: formData.dob
+        dob: formData.dob,
+        password: formData.password
       });
 
       const userSession = {
         name: formData.name,
         phone: fullPhone,
         dob: formData.dob,
+        password: formData.password,
         role: 'client'
       };
 
@@ -61,7 +65,7 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
   ];
 
   const whatsappQuestionUrl = `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(
-    'Hello Teiendraa K Meena Ji, I have a question regarding Numerology consultation.'
+    'Hello Tejendraa k meena Ji, I have a question regarding Numerology consultation.'
   )}`;
 
   return (
@@ -139,6 +143,27 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] text-sm font-medium"
                 />
+              </div>
+
+              {/* Field 4: Password */}
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full px-4 pr-10 py-3 rounded-lg border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] text-sm font-medium"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-3 text-slate-400 hover:text-slate-600 focus:outline-none cursor-pointer"
+                  title={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
 
               {/* Checkbox & Terms Agreement */}
