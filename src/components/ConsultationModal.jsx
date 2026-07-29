@@ -99,32 +99,38 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 
   // WhatsApp Message Formatted Output
   const generateFormattedWhatsApp = () => {
+    const depositNum = parseInt(advanceDeposit.replace(/[^0-9]/g, ''), 10) || 1000;
+    const upiLink = `upi://pay?pa=8107241463@ybl&pn=TEJENDRA%20KUMAR%20MEENA%20SO%20DHANRAJ%20MEENA&am=${depositNum}&cu=INR`;
     const qrLink = `${window.location.origin}/payment-qr.jpeg`;
     const text = 
-`🌟 *NUMEROLOGY by TEJENDRA* 🌟
+`\u{1F31F} *NUMEROLOGY by TEJENDRA* \u{1F31F}
 ----------------------------------
-📌 *New Consultation Booking Request*
+\u{1F4CC} *New Consultation Booking Request*
 
-👤 *Client Name*: ${formData.name}
-📱 *Mobile*: ${formData.phone}
-✉️ *Email*: ${formData.email || 'Not specified'}
-🎂 *Date of Birth*: ${formData.dob || 'Not specified'}
-🔮 *Service Focus*: ${formData.service}
-🌐 *Meeting Mode*: ${formData.mode}
-⏱️ *Duration*: ${formData.duration}
-📅 *Preferred Date*: ${formData.date}
-⏰ *Time Slot*: ${formData.timeSlot}
-💳 *Advance Deposit*: ${advanceDeposit} (20% Booking Fee)
-💰 *Total Fee*: ${totalFee}
+\u{1F464} *Client Name*: ${formData.name}
+\u{1F4F1} *Mobile*: ${formData.phone}
+\u{2709}\u{FE0F} *Email*: ${formData.email || 'Not specified'}
+\u{1F382} *Date of Birth*: ${formData.dob || 'Not specified'}
+\u{1F52E} *Service Focus*: ${formData.service}
+\u{1F310} *Meeting Mode*: ${formData.mode}
+\u{23F1}\u{FE0F} *Duration*: ${formData.duration}
+\u{1F4C5} *Preferred Date*: ${formData.date}
+\u{23F0} *Time Slot*: ${formData.timeSlot}
+\u{1F4B3} *Advance Booking Fee*: ${advanceDeposit}
+\u{1F4B0} *Total Fee*: ${totalFee}
 
 ----------------------------------
-💳 *Payment Instructions:*
-Please pay the advance booking deposit of ${advanceDeposit} to confirm your slot.
-Scan/Click the QR Code link below to pay using any UPI app (GPay, PhonePe, Paytm, BHIM, etc.):
-🔗 QR Code Link: ${qrLink}
+\u{26A1} *Direct UPI Pay Link (Mobile Only):*
+${upiLink}
 
-After making the payment, please share the transaction screenshot in this chat to confirm your booking!
+\u{1F4F8} *QR Code Scanner Link (View QR image):*
+${qrLink}
+
 ----------------------------------
+*Instructions:*
+1. Pay the advance booking fee using any UPI app (Google Pay, PhonePe, Paytm, etc.).
+2. Once paid, share the payment receipt screenshot here to confirm your slot!
+
 "Numbers Speak. We Decode. You Succeed."`;
 
     return `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(text)}`;
@@ -353,8 +359,18 @@ After making the payment, please share the transaction screenshot in this chat t
                 />
               </div>
 
+              {/* Pay via UPI button for mobiles */}
+              <div className="px-2">
+                <a
+                  href={`upi://pay?pa=8107241463@ybl&pn=TEJENDRA%20KUMAR%20MEENA%20SO%20DHANRAJ%20MEENA&am=${parseInt(advanceDeposit.replace(/[^0-9]/g, ''), 10) || 1000}&cu=INR`}
+                  className="w-full py-2.5 px-4 text-xs font-extrabold bg-[#1E3A8A] hover:bg-[#1E3A8A]/90 text-white rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer uppercase tracking-wider"
+                >
+                  ⚡ Pay via UPI App (GPay/PhonePe)
+                </a>
+              </div>
+
               <div className="text-[11px] text-slate-500 font-medium leading-relaxed px-2">
-                Scan using <strong className="text-slate-800">any UPI app</strong> (Google Pay, PhonePe, Paytm, BHIM, etc.) to pay.
+                Scan using <strong className="text-slate-800">any UPI app</strong> (Google Pay, PhonePe, Paytm, BHIM, etc.) or click the button above on mobile.
               </div>
               <div className="text-[11px] bg-[#1E3A8A]/10 text-[#1E3A8A] font-bold py-1.5 px-3 rounded-lg inline-block">
                 Please share the payment screenshot on WhatsApp to confirm your slot!
