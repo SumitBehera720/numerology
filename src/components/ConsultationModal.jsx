@@ -91,10 +91,15 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 
     setSubmittedBooking(saved);
     setIsSuccess(true);
+
+    // Automatically trigger WhatsApp redirect in a new tab
+    const waUrl = generateFormattedWhatsApp();
+    window.open(waUrl, '_blank');
   };
 
   // WhatsApp Message Formatted Output
   const generateFormattedWhatsApp = () => {
+    const qrLink = `${window.location.origin}/payment-qr.jpeg`;
     const text = 
 `🌟 *NUMEROLOGY by TEJENDRA* 🌟
 ----------------------------------
@@ -112,6 +117,13 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 💳 *Advance Deposit*: ${advanceDeposit} (20% Booking Fee)
 💰 *Total Fee*: ${totalFee}
 
+----------------------------------
+💳 *Payment Instructions:*
+Please pay the advance booking deposit of ${advanceDeposit} to confirm your slot.
+Scan/Click the QR Code link below to pay using any UPI app (GPay, PhonePe, Paytm, BHIM, etc.):
+🔗 QR Code Link: ${qrLink}
+
+After making the payment, please share the transaction screenshot in this chat to confirm your booking!
 ----------------------------------
 "Numbers Speak. We Decode. You Succeed."`;
 
@@ -312,31 +324,61 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
           </div>
         ) : (
           /* SUCCESS STATE */
-          <div className="text-center space-y-6 py-4">
-            <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
-              <CheckCircle2 className="w-10 h-10" />
+          <div className="text-center space-y-5 py-2">
+            <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-8 h-8" />
             </div>
-            <h3 className="text-2xl font-extrabold font-cinzel text-slate-900">Request Confirmed!</h3>
-            <p className="text-xs text-slate-600">
-              Thank you, <strong className="text-slate-900">{formData.name}</strong>. Your booking request has been logged in the system. Send your details via WhatsApp to complete slot confirmation.
-            </p>
+            <div>
+              <h3 className="text-xl font-extrabold font-cinzel text-[#1E3A8A]">Booking Request Submitted!</h3>
+              <p className="text-xs text-slate-600 mt-1">
+                Thank you, <strong className="text-slate-900">{formData.name}</strong>. We've saved your request in our admin system and opened WhatsApp to connect.
+              </p>
+            </div>
 
-            <a
-              href={generateFormattedWhatsApp()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary w-full py-4 text-sm font-extrabold flex items-center justify-center gap-2 block"
-            >
-              <MessageSquare className="w-5 h-5 text-white" />
-              Send Formatted Details on WhatsApp
-            </a>
+            {/* QR Payment Area */}
+            <div className="bg-[#F8F6F1] border border-amber-200 p-4 rounded-2xl space-y-3">
+              <div className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                👇 Pay 20% Booking Advance 👇
+              </div>
+              <div className="text-lg font-extrabold text-[#1E3A8A]">
+                Advance Deposit: <span className="text-[#D4AF37]">{advanceDeposit}</span>
+              </div>
+              
+              {/* QR Code Wrapper */}
+              <div className="relative w-44 h-44 mx-auto bg-white p-2 rounded-xl shadow-md border-2 border-[#D4AF37] flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/payment-qr.jpeg" 
+                  alt="Payment QR Code Scanner"
+                  className="w-full h-full object-contain"
+                />
+              </div>
 
-            <button
-              onClick={() => { setIsSuccess(false); onClose(); }}
-              className="w-full py-2.5 text-xs text-slate-500 font-semibold cursor-pointer"
-            >
-              Close Window
-            </button>
+              <div className="text-[11px] text-slate-500 font-medium leading-relaxed px-2">
+                Scan using <strong className="text-slate-800">any UPI app</strong> (Google Pay, PhonePe, Paytm, BHIM, etc.) to pay.
+              </div>
+              <div className="text-[11px] bg-[#1E3A8A]/10 text-[#1E3A8A] font-bold py-1.5 px-3 rounded-lg inline-block">
+                Please share the payment screenshot on WhatsApp to confirm your slot!
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <a
+                href={generateFormattedWhatsApp()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 text-sm font-extrabold flex items-center justify-center gap-2 block bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-xl transition-all shadow-md cursor-pointer"
+              >
+                <MessageSquare className="w-5 h-5 text-white" />
+                Go to WhatsApp Chat
+              </a>
+
+              <button
+                onClick={() => { setIsSuccess(false); onClose(); }}
+                className="w-full py-2 text-xs text-slate-400 hover:text-slate-600 font-bold cursor-pointer"
+              >
+                Close Window
+              </button>
+            </div>
           </div>
         )}
 
