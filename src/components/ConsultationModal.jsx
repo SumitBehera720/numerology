@@ -64,7 +64,7 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
   };
   const advanceDeposit = getAdvanceDeposit(totalFee);
   const depositNum = parseInt(advanceDeposit.replace(/[^0-9]/g, ''), 10) || 1000;
-  const upiLink = `upi://pay?pa=8107241463@ybl&pn=TEJENDRA KUMAR MEENA SO DHANRAJ MEENA&am=${depositNum}&cu=INR`;
+  const upiLink = `upi://pay?pa=8107241463@ybl&pn=TEJENDRA KUMAR MEENA&am=${depositNum}&cu=INR`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,39 +101,35 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 
   // WhatsApp Message Formatted Output
   const generateFormattedWhatsApp = () => {
-    const sparkles = String.fromCodePoint(0x2728);
-    const crystal = String.fromCodePoint(0x1F52E);
-    const user = String.fromCodePoint(0x1F464);
-    const phoneSymbol = String.fromCodePoint(0x1F4F1);
-    const calendar = String.fromCodePoint(0x1F4C5);
-    const card = String.fromCodePoint(0x1F4B3);
-    const money = String.fromCodePoint(0x1F4B0);
-    const upiSymbol = String.fromCodePoint(0x26A1);
-    const linkSymbol = String.fromCodePoint(0x1F517);
-
     const qrLink = `${window.location.origin}/payment-qr.jpeg`;
     const text = 
-`${sparkles} *NUMEROLOGY BY TEJENDRA* ${sparkles}
+`*NUMEROLOGY BY TEJENDRA*
 ----------------------------------
-${crystal} *New Consultation Booking*
+*New Consultation Booking Request*
 
-${user} *Client Name*: ${formData.name}
-${phoneSymbol} *Mobile*: ${formData.phone}
-${crystal} *Service Focus*: ${formData.service}
-${calendar} *Date & Time*: ${formData.date} (${formData.timeSlot})
-
-${card} *Advance Booking Fee*: ${advanceDeposit}
-${money} *Total Fee*: ${totalFee}
+*Client Name*: ${formData.name}
+*Mobile*: ${formData.phone}
+*Email*: ${formData.email || 'Not specified'}
+*Date of Birth*: ${formData.dob || 'Not specified'}
+*Service Focus*: ${formData.service}
+*Meeting Mode*: ${formData.mode}
+*Duration*: ${formData.duration}
+*Preferred Date*: ${formData.date}
+*Time Slot*: ${formData.timeSlot}
+*Advance Booking Fee*: ${advanceDeposit}
+*Total Fee*: ${totalFee}
 
 ----------------------------------
-${upiSymbol} *Pay via UPI (Mobile only):*
+*Direct UPI Pay Link (Mobile Only):*
 ${upiLink}
 
-${linkSymbol} *View Payment QR Code:*
+*QR Code Scanner Link (View QR image):*
 ${qrLink}
 
 ----------------------------------
-*Please share the payment screenshot here to confirm your slot!*
+*Instructions:*
+1. Pay the advance booking fee using any UPI app (Google Pay, PhonePe, Paytm, etc.).
+2. Once paid, share the payment receipt screenshot here to confirm your slot!
 
 "Numbers Speak. We Decode. You Succeed."`;
 
