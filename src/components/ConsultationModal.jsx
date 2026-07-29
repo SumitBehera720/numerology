@@ -63,6 +63,8 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
     return `₹${dep.toLocaleString('en-IN')}`;
   };
   const advanceDeposit = getAdvanceDeposit(totalFee);
+  const depositNum = parseInt(advanceDeposit.replace(/[^0-9]/g, ''), 10) || 1000;
+  const upiLink = `upi://pay?pa=8107241463@ybl&pn=TEJENDRA KUMAR MEENA SO DHANRAJ MEENA&am=${depositNum}&cu=INR`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -99,37 +101,39 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 
   // WhatsApp Message Formatted Output
   const generateFormattedWhatsApp = () => {
-    const depositNum = parseInt(advanceDeposit.replace(/[^0-9]/g, ''), 10) || 1000;
-    const upiLink = `upi://pay?pa=8107241463@ybl&pn=TEJENDRA%20KUMAR%20MEENA%20SO%20DHANRAJ%20MEENA&am=${depositNum}&cu=INR`;
+    const sparkles = String.fromCodePoint(0x2728);
+    const crystal = String.fromCodePoint(0x1F52E);
+    const user = String.fromCodePoint(0x1F464);
+    const phoneSymbol = String.fromCodePoint(0x1F4F1);
+    const calendar = String.fromCodePoint(0x1F4C5);
+    const card = String.fromCodePoint(0x1F4B3);
+    const money = String.fromCodePoint(0x1F4B0);
+    const upiSymbol = String.fromCodePoint(0x26A1);
+    const linkSymbol = String.fromCodePoint(0x1F517);
+
     const qrLink = `${window.location.origin}/payment-qr.jpeg`;
     const text = 
-`\u{1F31F} *NUMEROLOGY by TEJENDRA* \u{1F31F}
+`${sparkles} *NUMEROLOGY BY TEJENDRA* ${sparkles}
 ----------------------------------
-\u{1F4CC} *New Consultation Booking Request*
+${crystal} *New Consultation Booking*
 
-\u{1F464} *Client Name*: ${formData.name}
-\u{1F4F1} *Mobile*: ${formData.phone}
-\u{2709}\u{FE0F} *Email*: ${formData.email || 'Not specified'}
-\u{1F382} *Date of Birth*: ${formData.dob || 'Not specified'}
-\u{1F52E} *Service Focus*: ${formData.service}
-\u{1F310} *Meeting Mode*: ${formData.mode}
-\u{23F1}\u{FE0F} *Duration*: ${formData.duration}
-\u{1F4C5} *Preferred Date*: ${formData.date}
-\u{23F0} *Time Slot*: ${formData.timeSlot}
-\u{1F4B3} *Advance Booking Fee*: ${advanceDeposit}
-\u{1F4B0} *Total Fee*: ${totalFee}
+${user} *Client Name*: ${formData.name}
+${phoneSymbol} *Mobile*: ${formData.phone}
+${crystal} *Service Focus*: ${formData.service}
+${calendar} *Date & Time*: ${formData.date} (${formData.timeSlot})
+
+${card} *Advance Booking Fee*: ${advanceDeposit}
+${money} *Total Fee*: ${totalFee}
 
 ----------------------------------
-\u{26A1} *Direct UPI Pay Link (Mobile Only):*
+${upiSymbol} *Pay via UPI (Mobile only):*
 ${upiLink}
 
-\u{1F4F8} *QR Code Scanner Link (View QR image):*
+${linkSymbol} *View Payment QR Code:*
 ${qrLink}
 
 ----------------------------------
-*Instructions:*
-1. Pay the advance booking fee using any UPI app (Google Pay, PhonePe, Paytm, etc.).
-2. Once paid, share the payment receipt screenshot here to confirm your slot!
+*Please share the payment screenshot here to confirm your slot!*
 
 "Numbers Speak. We Decode. You Succeed."`;
 
@@ -362,7 +366,7 @@ ${qrLink}
               {/* Pay via UPI button for mobiles */}
               <div className="px-2">
                 <a
-                  href={`upi://pay?pa=8107241463@ybl&pn=TEJENDRA%20KUMAR%20MEENA%20SO%20DHANRAJ%20MEENA&am=${parseInt(advanceDeposit.replace(/[^0-9]/g, ''), 10) || 1000}&cu=INR`}
+                  href={upiLink}
                   className="w-full py-2.5 px-4 text-xs font-extrabold bg-[#1E3A8A] hover:bg-[#1E3A8A]/90 text-white rounded-xl transition-all shadow-md flex items-center justify-center gap-1.5 cursor-pointer uppercase tracking-wider"
                 >
                   ⚡ Pay via UPI App (GPay/PhonePe)
