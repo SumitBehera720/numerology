@@ -112,8 +112,6 @@ export default function ConsultationModal({ isOpen, onClose, currentUser, onRequ
 *Email*: ${formData.email || 'Not specified'}
 *Date of Birth*: ${formData.dob || 'Not specified'}
 *Service Focus*: ${formData.service}
-*Meeting Mode*: ${formData.mode}
-*Duration*: ${formData.duration}
 *Preferred Date*: ${formData.date}
 *Time Slot*: ${formData.timeSlot}
 *Advance Booking Fee*: ${advanceDeposit}
@@ -259,35 +257,6 @@ ${qrLink}
                 </select>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                    Appointment Mode *
-                  </label>
-                  <select
-                    value={formData.mode}
-                    onChange={(e) => setFormData({ ...formData, mode: e.target.value })}
-                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-[#D4AF37]"
-                  >
-                    <option value="Online Zoom Meeting">Online Zoom Meeting</option>
-                    <option value="Face to Face Office Meeting">Face to Face Office Meeting</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                    Duration *
-                  </label>
-                  <select
-                    value={formData.duration}
-                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                    className="w-full max-w-full px-4 py-3 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-[#D4AF37]"
-                  >
-                    <option value="30 Minutes">30 Minutes</option>
-                    <option value="60 Minutes">60 Minutes</option>
-                  </select>
-                </div>
-              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
