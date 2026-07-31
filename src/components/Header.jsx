@@ -8,7 +8,7 @@ import { brandInfo, servicesList } from '../data/tejendraData';
 
 const NAV_LINKS = [
   { id: 'home',         label: 'Home', icon: Home },
-  { id: 'about',        label: 'About Tejendraa', icon: User },
+  { id: 'about',        label: 'About Tejendraa K Meena', icon: User },
   { id: 'services',     label: 'Services', icon: Compass, hasDropdown: true },
   { id: 'testimonials', label: 'Testimonials', icon: Star },
   { id: 'calculator',   label: 'Free Calculator', icon: Sparkles },
@@ -53,7 +53,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
   };
 
   const whatsappUrl = `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(
-    'Hello Tejendraa k meena Ji, I have a question regarding Numerology consultation.'
+    'Hello Tejendraa K Meena Ji, I have a question regarding Numerology consultation.'
   )}`;
 
   return (
@@ -127,7 +127,7 @@ export default function Header({ activeTab, setActiveTab, onOpenConsultation, cu
                   NUMEROLOGY
                 </span>
                 <span className="text-[9px] sm:text-xs font-bold tracking-widest uppercase text-slate-700 mt-0.5">
-                  by <span className="text-[#D4AF37] font-extrabold font-cinzel">TEJENDRA</span>
+                  by <span className="text-[#D4AF37] font-extrabold font-cinzel">TEJENDRAA K MEENA</span>
                 </span>
               </div>
             </div>

@@ -54,11 +54,14 @@ export default function ServicesPage({ onOpenConsultation }) {
                         {rep.tag}
                       </span>
                       <div className="flex flex-col items-end">
-                        <span className="text-xs text-slate-400 line-through font-semibold">
+                        <span className="text-xs text-slate-400 line-through font-semibold leading-none mb-0.5">
                           {rep.originalPrice}
                         </span>
-                        <span className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
+                        <span className="text-2xl font-extrabold font-cinzel text-[#1E3A8A] leading-none">
                           {rep.price}
+                        </span>
+                        <span className="text-[9px] text-[#D4AF37] font-black uppercase tracking-wider mt-1.5 animate-pulse">
+                          Limited Period Offer
                         </span>
                       </div>
                     </div>
@@ -100,7 +103,7 @@ export default function ServicesPage({ onOpenConsultation }) {
                   Book An Appointment
                 </h2>
                 <p className="text-slate-600 text-sm max-w-xl mx-auto mt-2 font-medium">
-                  Select your preferred meeting type and duration to schedule a consultation slot with Tejendraa k meena.
+                  Select your preferred meeting type and duration to schedule a consultation slot with Tejendraa K Meena.
                 </p>
               </div>
             </ScrollReveal>
@@ -136,18 +139,20 @@ export default function ServicesPage({ onOpenConsultation }) {
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                       <button
                         onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '30 Minutes' })}
-                        className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A]"
+                        className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A] relative overflow-hidden"
                         title="Book 30 Minutes Online Session"
                       >
+                        <div className="absolute top-0 right-0 bg-[#D4AF37] text-[7px] text-[#1E3A8A] font-black px-1.5 py-0.5 rounded-bl uppercase tracking-wider">Offer</div>
                         <span className="text-xs font-black text-[#1E3A8A] uppercase tracking-wide">30 Minutes</span>
                         <span className="text-[#1E3A8A] font-extrabold text-base mt-1">₹2,599</span>
                         <span className="text-slate-400 line-through text-[10px] font-semibold">₹5,999</span>
                       </button>
                       <button
                         onClick={() => onOpenConsultation({ mode: 'Online Zoom Meeting', duration: '60 Minutes' })}
-                        className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A]"
+                        className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A] relative overflow-hidden"
                         title="Book 60 Minutes Online Session"
                       >
+                        <div className="absolute top-0 right-0 bg-[#D4AF37] text-[7px] text-[#1E3A8A] font-black px-1.5 py-0.5 rounded-bl uppercase tracking-wider">Offer</div>
                         <span className="text-xs font-black text-[#1E3A8A] uppercase tracking-wide">60 Minutes</span>
                         <span className="text-[#1E3A8A] font-extrabold text-base mt-1">₹7,999</span>
                         <span className="text-slate-400 line-through text-[10px] font-semibold">₹14,999</span>
@@ -186,9 +191,10 @@ export default function ServicesPage({ onOpenConsultation }) {
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
                       <button
                         onClick={() => onOpenConsultation({ mode: 'Face to Face Office Meeting', duration: '30 Minutes' })}
-                        className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A]"
+                        className="w-full sm:w-auto min-w-[130px] py-3 px-4 rounded-2xl bg-white hover:bg-[#D4AF37]/10 border-2 border-[#D4AF37] flex flex-col items-center justify-center transition-all cursor-pointer hover:scale-105 shadow-sm group-hover:border-[#1E3A8A] relative overflow-hidden"
                         title="Book 30 Minutes In-Person Session"
                       >
+                        <div className="absolute top-0 right-0 bg-[#D4AF37] text-[7px] text-[#1E3A8A] font-black px-1.5 py-0.5 rounded-bl uppercase tracking-wider">Offer</div>
                         <span className="text-xs font-black text-[#1E3A8A] uppercase tracking-wide">30 Minutes</span>
                         <span className="text-[#1E3A8A] font-extrabold text-base mt-1">₹4,999</span>
                         <span className="text-slate-400 line-through text-[10px] font-semibold">₹9,999</span>
@@ -239,9 +245,19 @@ export default function ServicesPage({ onOpenConsultation }) {
                       <span className="text-xs font-extrabold bg-[#1E3A8A] text-[#D4AF37] px-3.5 py-1 rounded-full">
                         {service.badge}
                       </span>
-                      <span className="text-xl font-extrabold font-cinzel text-[#1E3A8A]">
-                        {service.price}
-                      </span>
+                      <div className="flex flex-col items-end">
+                        {service.originalPrice && (
+                          <span className="text-xs text-slate-400 line-through font-semibold leading-none mb-0.5">
+                            {service.originalPrice}
+                          </span>
+                        )}
+                        <span className="text-xl font-extrabold font-cinzel text-[#1E3A8A] leading-none">
+                          {service.price}
+                        </span>
+                        <span className="text-[9px] text-[#D4AF37] font-black uppercase tracking-wider mt-1.5 animate-pulse">
+                          Limited Period Offer
+                        </span>
+                      </div>
                     </div>
 
                     <h3 className="text-2xl font-extrabold font-cinzel text-slate-900 mb-3">

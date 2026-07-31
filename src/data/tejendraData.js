@@ -1,6 +1,6 @@
 export const brandInfo = {
-  name: "NUMEROLOGY by TEJENDRA",
-  author: "Tejendraa k meena",
+  name: "NUMEROLOGY by TEJENDRAA K MEENA",
+  author: "Tejendraa K Meena",
   tagline: "Numbers Speak. We Decode. You Succeed.",
   phone: "8107241463",
   phoneRaw: "+918107241463",
@@ -32,6 +32,7 @@ export const servicesList = [
       "Executive Board Compatibility Analysis",
       "Financial Growth & Wealth Number Tuning"
     ],
+    originalPrice: "₹9,999",
     price: "₹4,999"
   },
   {
@@ -46,6 +47,7 @@ export const servicesList = [
       "Bank Account & Document Number Selection",
       "Store / Office Location Address Vibration"
     ],
+    originalPrice: "₹7,999",
     price: "₹3,999"
   },
   {
@@ -60,6 +62,7 @@ export const servicesList = [
       "Friction Resolution & Communication Tuning",
       "Long-term Relationship Stability Guidance"
     ],
+    originalPrice: "₹6,999",
     price: "₹3,499"
   },
   {
@@ -74,6 +77,7 @@ export const servicesList = [
       "Interview & Deal Closing Favorable Dates",
       "Overcoming Professional Stagnation"
     ],
+    originalPrice: "₹5,999",
     price: "₹2,999"
   },
   {
@@ -88,6 +92,7 @@ export const servicesList = [
       "Parent-Child Bonding Optimization",
       "Early Childhood Growth Guidance"
     ],
+    originalPrice: "₹4,999",
     price: "₹2,499"
   },
   {
@@ -102,6 +107,7 @@ export const servicesList = [
       "Study Room Direction & Desk Alignment",
       "Exam Confidence & Memory Enhancement"
     ],
+    originalPrice: "₹3,999",
     price: "₹1,999"
   }
 ];
@@ -182,7 +188,7 @@ export const testimonialsList = [
     name: "Abhishek Kumar Gupta",
     role: "KV Teacher",
     rating: 5,
-    text: "Mr. Tejendraa k meena has deep knowledge of Numerology. He tells about the person in great details. I have met many numerologists and found him one of the best among them.",
+    text: "Tejendraa K Meena has deep knowledge of Numerology. He tells about the person in great details. I have met many numerologists and found him one of the best among them.",
     image: "/Abhishek Gupta.jpeg"
   },
   {
@@ -196,43 +202,43 @@ export const testimonialsList = [
     name: "Mr Abhishek Srivastav",
     role: "AGM - Sales & Marketing Noida",
     rating: 5,
-    text: "Mr. Tejendraa k meena is an exceptional Numerologist whose wisdom, insight, and dedication have positively impacted the lives of countless individuals. His deep understanding of numerology, combined with his ability to provide practical guidance, makes him a trusted mentor and advisor. What truly sets Mr. Tejendraa k meena apart is his genuine commitment to helping people discover clarity, purpose, and direction in their personal and professional journeys. His predictions and consultations are not only insightful but also empowering, enabling individuals to make informed decisions with confidence. Beyond his expertise, Mr. Meena is admired for his humility, professionalism, and compassionate approach. His ability to connect with people and simplify complex numerological concepts reflects his mastery of the subject and his passion for serving others. It is a privilege to know and learn from a personality like Mr. Tejendraa k meena. His remarkable work continues to inspire, guide, and transform lives. Wishing him continued success, recognition, and the opportunity to touch many more lives through his exceptional knowledge and service.",
+    text: "Tejendraa K Meena is an exceptional Numerologist whose wisdom, insight, and dedication have positively impacted the lives of countless individuals. His deep understanding of numerology, combined with his ability to provide practical guidance, makes him a trusted mentor and advisor. What truly sets Tejendraa K Meena apart is his genuine commitment to helping people discover clarity, purpose, and direction in their personal and professional journeys. His predictions and consultations are not only insightful but also empowering, enabling individuals to make informed decisions with confidence. Beyond his expertise, Tejendraa K Meena is admired for his humility, professionalism, and compassionate approach. His ability to connect with people and simplify complex numerological concepts reflects his mastery of the subject and his passion for serving others. It is a privilege to know and learn from a personality like Tejendraa K Meena. His remarkable work continues to inspire, guide, and transform lives. Wishing him continued success, recognition, and the opportunity to touch many more lives through his exceptional knowledge and service.",
     image: "/Abhishek Srivastav.jpeg"
   },
   {
     name: "Gaurav Kushwaha",
     role: "NEET Student",
     rating: 5,
-    text: "Very helpful and incredibly accurate in predicting many aspects of my life. Tejendraa k meena Sir not only identified my strengths and areas for improvement but also patiently and thoughtfully counselled me on how to work on them. His guidance was practical, insightful, and reassuring. It was truly one of the best one-hour sessions of my life. I highly recommend NUMEROLOGY by TEJENDRA to anyone seeking clarity, direction, and personal growth.",
+    text: "Very helpful and incredibly accurate in predicting many aspects of my life. Tejendraa K Meena Sir not only identified my strengths and areas for improvement but also patiently and thoughtfully counselled me on how to work on them. His guidance was practical, insightful, and reassuring. It was truly one of the best one-hour sessions of my life. I highly recommend NUMEROLOGY by TEJENDRAA K MEENA to anyone seeking clarity, direction, and personal growth.",
     image: "/Gaurav.jpeg"
   },
   {
     name: "Vikram Aditya Rathore",
     role: "Founder, Rathore Logistics",
     rating: 5,
-    text: "I consulted Tejendraa k meena for our logistics startup brand name and logo vibration. After making the recommended spelling changes, we saw a noticeable shift in client acquisition and team alignment within 3 months. His corporate background makes him extremely practical.",
+    text: "I consulted Tejendraa K Meena for our logistics startup brand name and logo vibration. After making the recommended spelling changes, we saw a noticeable shift in client acquisition and team alignment within 3 months. His corporate background makes him extremely practical.",
     image: ""
   },
   {
     name: "Dr. Ananya Sen",
     role: "Consultant Gynecologist, Kolkata",
     rating: 5,
-    text: "Highly impressed by his analytical approach. Tejendraa Ji did a name spelling modification for me and my daughter. The consultation was scientific, logical, and without any superstitious claims. Highly recommended for professionals.",
+    text: "Highly impressed by his analytical approach. Tejendraa K Meena did a name spelling modification for me and my daughter. The consultation was scientific, logical, and without any superstitious claims. Highly recommended for professionals.",
     image: ""
   },
   {
     name: "Siddharth Malhotra",
     role: "Senior Software Engineer, Tech Mahindra",
     rating: 5,
-    text: "Tejendraa k meena's career numerology guidance was eye-opening. The career timing analysis was very accurate, and the name correction gave me the confidence to make my transition. Excellent 60 minutes online session.",
+    text: "Tejendraa K Meena's career numerology guidance was eye-opening. The career timing analysis was very accurate, and the name correction gave me the confidence to make my transition. Excellent 60 minutes online session.",
     image: ""
   }
 ];
 
 export const faqList = [
   {
-    q: "How does NUMEROLOGY by TEJENDRA differ from astrology or tarot?",
-    a: "Numerology is a precise mathematical and cosmic science based on the energy frequencies of numbers (1 through 9) derived from your birth date and name letters. Tejendraa k meena combines Pythagorean and Chaldean numerology to give actionable, practical life guidance."
+    q: "How does NUMEROLOGY by TEJENDRAA K MEENA differ from astrology or tarot?",
+    a: "Numerology is a precise mathematical and cosmic science based on the energy frequencies of numbers (1 through 9) derived from your birth date and name letters. Tejendraa K Meena combines Pythagorean and Chaldean numerology to give actionable, practical life guidance."
   },
   {
     q: "What details are required for a Numerology consultation?",
@@ -240,7 +246,7 @@ export const faqList = [
   },
   {
     q: "Do I need to change my official name on legal documents?",
-    a: "Not necessarily! In most cases, Tejendraa Ji recommends practical name spelling modifications for everyday usage (social media, email signature, visiting cards, business branding) which shifts your energy vibration without requiring immediate passport or Aadhaar changes."
+    a: "Not necessarily! In most cases, Tejendraa K Meena recommends practical name spelling modifications for everyday usage (social media, email signature, visiting cards, business branding) which shifts your energy vibration without requiring immediate passport or Aadhaar changes."
   },
   {
     q: "How do I book a consultation and what is the payment process?",
@@ -403,7 +409,7 @@ const SEED_UPDATES = [
     title: 'Chaldean vs Pythagorean Numerology: The Core Differences Explained',
     readTime: '5 Mins Read',
     date: 'July 24, 2026',
-    author: 'Tejendraa k meena',
+    author: 'Tejendraa K Meena',
     excerpt: 'Understanding the origins and vibrational mappings of Chaldean and Pythagorean matrices to correctly calculate your personal destiny grid.',
     thumbnail: '/numerology pic.jpg',
     category: 'Educational'
@@ -425,7 +431,7 @@ const SEED_UPDATES = [
     title: 'Corporate Logo Design: The Numerology and Planetary Alignment of Brand Colors',
     readTime: '7 Mins Read',
     date: 'July 20, 2026',
-    author: 'Tejendraa k meena',
+    author: 'Tejendraa K Meena',
     excerpt: 'How business names, logo grid dimensions, and color wave frequencies interact with a founder\'s personal Life Path and Destiny numbers.',
     thumbnail: '/logo.jpeg',
     category: 'Corporate'
@@ -447,7 +453,7 @@ const SEED_UPDATES = [
     title: 'Selecting Favorable Business Registration Dates in 2026',
     readTime: '4 Mins Read',
     date: 'July 15, 2026',
-    author: 'Tejendraa k meena',
+    author: 'Tejendraa K Meena',
     excerpt: 'An auspicious registration date acts as the foundational birth grid of your company. Avoid mercury retrograde windows and select peak double-vibration dates.',
     thumbnail: '/logo.jpeg',
     category: 'Business'
@@ -474,7 +480,7 @@ export function saveUpdatePost(postObj) {
       id: Date.now(),
       views: '0 Views',
       likes: '0 Likes',
-      author: 'Tejendraa k meena',
+      author: 'Tejendraa K Meena',
       date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
       ...postObj
     };

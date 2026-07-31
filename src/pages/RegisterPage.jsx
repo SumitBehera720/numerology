@@ -65,7 +65,7 @@ export default function RegisterPage({ onOpenConsultation, setActiveTab, setCurr
   ];
 
   const whatsappQuestionUrl = `https://wa.me/${brandInfo.whatsapp}?text=${encodeURIComponent(
-    'Hello Tejendraa k meena Ji, I have a question regarding Numerology consultation.'
+    'Hello Tejendraa K Meena Ji, I have a question regarding Numerology consultation.'
   )}`;
 
   return (

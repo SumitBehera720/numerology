@@ -87,6 +87,14 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
   const [result, setResult] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
 
+  /* OTP verification states */
+  const [showOtpScreen, setShowOtpScreen] = useState(false);
+  const [otpInput, setOtpInput] = useState('');
+  const [generatedOtp, setGeneratedOtp] = useState('');
+  const [otpError, setOtpError] = useState('');
+  const [tempLead, setTempLead] = useState(null);
+  const [showOtpBanner, setShowOtpBanner] = useState(false);
+
   const handleLeadSubmit = (e) => {
     e.preventDefault();
     if (!leadName || !leadPhone || !leadDob) return;
@@ -97,75 +105,111 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
     setIsCalculating(true);
 
     setTimeout(() => {
-      const fullPhone = `${leadPhoneCode} ${leadPhone}`;
-      
-      // Save lead to local storage
-      saveRegisteredUser({
+      const code = Math.floor(1000 + Math.random() * 9000).toString();
+      setGeneratedOtp(code);
+      setTempLead({
         name: leadName,
-        phone: fullPhone,
+        phone: `${leadPhoneCode} ${leadPhone}`,
         dob: leadDob
       });
+      setShowOtpScreen(true);
+      setShowOtpBanner(true);
+      setIsCalculating(false);
+      setOtpError('');
+      setOtpInput('');
+    }, 800);
+  };
 
-      // Log user in locally
-      const newSession = {
-        name: leadName,
-        phone: fullPhone,
-        dob: leadDob,
-        role: 'client'
-      };
-      if (setCurrentUser) setCurrentUser(newSession);
+  const handleVerifyOtp = (e) => {
+    e.preventDefault();
+    if (!otpInput) return;
+    setIsCalculating(true);
 
-      // Pre-fill inputs
-      setNameInput(leadName);
-      setDobInput(leadDob);
-      setMobileInput(leadPhone);
-      setPartner1Dob(leadDob);
+    setTimeout(() => {
+      if (otpInput === generatedOtp || otpInput === '1234') {
+        const verifiedLead = tempLead;
+        
+        // Save verified lead to local storage
+        saveRegisteredUser(verifiedLead);
 
-      // Instantly calculate and set result for active tab
-      if (activeTab === 'name') {
-        const chaldeanSum = calculateChaldeanNumber(leadName);
-        const reducedSingle = reduceToSingleDigit(chaldeanSum);
-        const traitsObj = NUMBER_TRAITS[reducedSingle] || NUMBER_TRAITS[1];
-        setResult({
-          type: 'Name Number Analysis',
-          name: leadName,
-          compoundNumber: chaldeanSum,
-          singleDigit: reducedSingle,
-          title: traitsObj.title,
-          traits: traitsObj.traits,
-          career: traitsObj.career,
-          advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Tejendraa k meena for personalized spelling optimization.`
-        });
-      } else if (activeTab === 'lifepath') {
-        const lifePathNum = calculateLifePath(leadDob);
-        const traitsObj = NUMBER_TRAITS[lifePathNum] || NUMBER_TRAITS[1];
-        setResult({
-          type: 'Life Path Number Report',
-          dob: leadDob,
-          singleDigit: lifePathNum,
-          title: traitsObj.title,
-          traits: traitsObj.traits,
-          career: traitsObj.career,
-          advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Tejendraa k meena to align your career and business with this number.`
-        });
-      } else if (activeTab === 'mobile') {
-        const digits = leadPhone.replace(/\D/g, '');
-        const sum = digits.split('').reduce((acc, d) => acc + parseInt(d, 10), 0);
-        const reduced = reduceToSingleDigit(sum);
-        const traitsObj = NUMBER_TRAITS[reduced] || NUMBER_TRAITS[1];
-        setResult({
-          type: 'Mobile Number Numerology Score',
-          mobile: leadPhone,
-          compoundNumber: sum,
-          singleDigit: reduced,
-          title: traitsObj.title,
-          traits: traitsObj.traits,
-          vibrationRating: reduced === 1 || reduced === 5 || reduced === 6 ? 'Highly Auspicious & Wealth Attracting' : 'Moderate Energy - Optimization Suggested',
-          advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Tejendraa k meena.`
-        });
+        // Log user in locally
+        const newSession = {
+          ...verifiedLead,
+          role: 'client'
+        };
+        if (setCurrentUser) setCurrentUser(newSession);
+
+        // Pre-fill inputs
+        setNameInput(verifiedLead.name);
+        setDobInput(verifiedLead.dob);
+        setMobileInput(verifiedLead.phone);
+        setPartner1Dob(verifiedLead.dob);
+
+        // Instantly calculate and set result for active tab
+        if (activeTab === 'name') {
+          const chaldeanSum = calculateChaldeanNumber(verifiedLead.name);
+          const reducedSingle = reduceToSingleDigit(chaldeanSum);
+          const traitsObj = NUMBER_TRAITS[reducedSingle] || NUMBER_TRAITS[1];
+          setResult({
+            type: 'Name Number Analysis',
+            name: verifiedLead.name,
+            compoundNumber: chaldeanSum,
+            singleDigit: reducedSingle,
+            title: traitsObj.title,
+            traits: traitsObj.traits,
+            career: traitsObj.career,
+            advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Tejendraa K Meena for personalized spelling optimization.`
+          });
+        } else if (activeTab === 'lifepath') {
+          const lifePathNum = calculateLifePath(verifiedLead.dob);
+          const traitsObj = NUMBER_TRAITS[lifePathNum] || NUMBER_TRAITS[1];
+          setResult({
+            type: 'Life Path Number Report',
+            dob: verifiedLead.dob,
+            singleDigit: lifePathNum,
+            title: traitsObj.title,
+            traits: traitsObj.traits,
+            career: traitsObj.career,
+            advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Tejendraa K Meena to align your career and business with this number.`
+          });
+        } else if (activeTab === 'mobile') {
+          const cleanPhoneOnly = verifiedLead.phone.split(' ')[1] || verifiedLead.phone;
+          const digits = cleanPhoneOnly.replace(/\D/g, '');
+          const sum = digits.split('').reduce((acc, d) => acc + parseInt(d, 10), 0);
+          const reduced = reduceToSingleDigit(sum);
+          const traitsObj = NUMBER_TRAITS[reduced] || NUMBER_TRAITS[1];
+          setResult({
+            type: 'Mobile Number Numerology Score',
+            mobile: verifiedLead.phone,
+            compoundNumber: sum,
+            singleDigit: reduced,
+            title: traitsObj.title,
+            traits: traitsObj.traits,
+            vibrationRating: reduced === 1 || reduced === 5 || reduced === 6 ? 'Highly Auspicious & Wealth Attracting' : 'Moderate Energy - Optimization Suggested',
+            advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Tejendraa K Meena.`
+          });
+        }
+
+        setShowOtpScreen(false);
+        setShowOtpBanner(false);
+        setOtpError('');
+      } else {
+        setOtpError('Incorrect 4-digit OTP. Please enter the correct code.');
       }
       setIsCalculating(false);
     }, 600);
+  };
+
+  const handleResendOtp = () => {
+    setIsCalculating(true);
+    setTimeout(() => {
+      const code = Math.floor(1000 + Math.random() * 9000).toString();
+      setGeneratedOtp(code);
+      setShowOtpBanner(true);
+      setOtpInput('');
+      setOtpError('');
+      setIsCalculating(false);
+    }, 500);
   };
 
   const handleCalculateName = (e) => {
@@ -186,7 +230,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         title: traitsObj.title,
         traits: traitsObj.traits,
         career: traitsObj.career,
-        advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Tejendraa k meena for personalized spelling optimization.`
+        advice: `Your name number ${chaldeanSum} (${reducedSingle}) carries strong cosmic vibrations. Consult Tejendraa K Meena for personalized spelling optimization.`
       });
       setIsCalculating(false);
     }, 600);
@@ -208,7 +252,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         title: traitsObj.title,
         traits: traitsObj.traits,
         career: traitsObj.career,
-        advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Tejendraa k meena to align your career and business with this number.`
+        advice: `Your Life Path Number ${lifePathNum} defines your core life purpose. Book a private consultation with Tejendraa K Meena to align your career and business with this number.`
       });
       setIsCalculating(false);
     }, 600);
@@ -233,7 +277,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         title: traitsObj.title,
         traits: traitsObj.traits,
         vibrationRating: reduced === 1 || reduced === 5 || reduced === 6 ? 'Highly Auspicious & Wealth Attracting' : 'Moderate Energy - Optimization Suggested',
-        advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Tejendraa k meena.`
+        advice: `Your mobile number totals ${sum} (Single Digit ${reduced}). Discover if your phone number attracts wealth or blocks income with Tejendraa K Meena.`
       });
       setIsCalculating(false);
     }, 600);
@@ -258,7 +302,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         p2Lp: lp2,
         matchScore: matchScore,
         harmonyStatus: matchScore > 80 ? 'Excellent Cosmic Harmony' : 'Good Compatibility - Minor Alignment Needed',
-        advice: `Life Path ${lp1} & Life Path ${lp2} have a ${matchScore}% cosmic resonance. Book Couples Numerology with Tejendraa k meena to deepen mutual understanding.`
+        advice: `Life Path ${lp1} & Life Path ${lp2} have a ${matchScore}% cosmic resonance. Book Couples Numerology with Tejendraa K Meena to deepen mutual understanding.`
       });
       setIsCalculating(false);
     }, 600);
@@ -331,99 +375,189 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
         </div>
 
         {/* CALCULATOR FORMS */}
-        {!currentUser ? (
-          <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/15 shadow-inner text-left">
-            <div className="mb-6">
-              <h3 className="text-xl font-bold font-cinzel text-[#D4AF37]">
-                {activeTab === 'name' && 'Unlock Your Name Number Vibration'}
-                {activeTab === 'lifepath' && 'Unlock Your Life Path Destiny Number'}
-                {activeTab === 'mobile' && 'Unlock Your Mobile Vibration Score'}
-                {activeTab === 'compatibility' && 'Unlock Relationship Compatibility Score'}
-              </h3>
-              <p className="text-slate-200 text-xs sm:text-sm mt-1.5 leading-relaxed font-medium">
-                Please provide your details below to instantly calculate and display your personalized report.
-              </p>
-            </div>
-            
-            <form onSubmit={handleLeadSubmit} className="space-y-4">
+        {showOtpBanner && (
+          <div className="mb-6 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-2xl p-4 shadow-xl border border-emerald-400/40 relative animate-fadeIn flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm font-semibold">
+            <div className="flex items-center gap-2.5">
+              <span className="text-xl sm:text-2xl shrink-0">📱</span>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-[#D4AF37] mb-1.5">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Tejendraa k meena"
-                  value={leadName}
-                  onChange={(e) => setLeadName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
-                />
+                <span className="text-[#D4AF37] font-black uppercase tracking-wider block text-[10px]">Simulated SMS Notification</span>
+                <span>From <strong>TX-NUMER</strong>: Your verification code is <strong className="bg-white text-emerald-800 px-2 py-0.5 rounded ml-1 font-mono text-sm tracking-wider select-all">{generatedOtp}</strong></span>
+              </div>
+            </div>
+            <button 
+              onClick={() => setShowOtpBanner(false)}
+              className="px-2.5 py-1 bg-white/20 hover:bg-white/35 rounded-lg text-white font-extrabold cursor-pointer border border-white/20 text-[10px] sm:text-xs"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
+
+        {!currentUser ? (
+          showOtpScreen ? (
+            /* OTP VERIFICATION VIEW */
+            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/15 shadow-inner text-left animate-fadeIn">
+              <div className="mb-6">
+                <span className="text-xs font-black bg-[#D4AF37]/20 border border-[#D4AF37]/40 text-[#D4AF37] px-3.5 py-1 rounded-full uppercase tracking-wider inline-block mb-3">
+                  🔒 Step 2: Verification
+                </span>
+                <h3 className="text-xl font-bold font-cinzel text-[#D4AF37]">
+                  Verify Your Mobile Number
+                </h3>
+                <p className="text-slate-200 text-xs sm:text-sm mt-1.5 leading-relaxed font-medium">
+                  We have sent a 4-digit verification code (OTP) to <strong>{tempLead?.phone}</strong>. Please enter it below to verify your details and calculate your report.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {otpError && (
+                <div className="bg-red-500/20 border border-red-500/40 text-red-200 text-xs p-3 rounded-xl mb-4 font-bold text-center">
+                  ⚠️ {otpError}
+                </div>
+              )}
+
+              <form onSubmit={handleVerifyOtp} className="space-y-6">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#D4AF37] mb-2">
+                    Enter 4-Digit OTP
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    maxLength={4}
+                    placeholder="e.g. 1234"
+                    value={otpInput}
+                    onChange={(e) => setOtpInput(e.target.value.replace(/\D/g, ''))}
+                    className="w-full text-center px-4 py-4 rounded-xl bg-white/10 border border-white/25 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] font-mono text-xl tracking-[0.75em] font-extrabold focus:placeholder-transparent"
+                  />
+                  <p className="text-[10px] text-slate-400 mt-2 italic">
+                    Hint: The verification code is displayed in the notification banner above. You can also enter 1234.
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                  <button
+                    type="submit"
+                    disabled={isCalculating}
+                    className="flex-1 py-4 bg-[#D4AF37] hover:bg-[#c49f2b] text-[#1E3A8A] font-extrabold text-sm sm:text-base rounded-xl transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    {isCalculating ? <RefreshCw className="w-5 h-5 animate-spin" /> : <CheckCircle2 className="w-5 h-5" />}
+                    Verify & Calculate
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleResendOtp}
+                    disabled={isCalculating}
+                    className="py-4 px-6 bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm rounded-xl border border-white/20 transition-all cursor-pointer"
+                  >
+                    Resend Code
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => { setShowOtpScreen(false); setShowOtpBanner(false); }}
+                    className="py-4 px-6 bg-red-500/20 hover:bg-red-500/30 text-red-200 font-bold text-xs sm:text-sm rounded-xl border border-red-500/30 transition-all cursor-pointer"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          ) : (
+            /* LEAD CAPTURE FORM */
+            <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/15 shadow-inner text-left">
+              <div className="mb-6">
+                <h3 className="text-xl font-bold font-cinzel text-[#D4AF37]">
+                  {activeTab === 'name' && 'Unlock Your Name Number Vibration'}
+                  {activeTab === 'lifepath' && 'Unlock Your Life Path Destiny Number'}
+                  {activeTab === 'mobile' && 'Unlock Your Mobile Vibration Score'}
+                  {activeTab === 'compatibility' && 'Unlock Relationship Compatibility Score'}
+                </h3>
+                <p className="text-slate-200 text-xs sm:text-sm mt-1.5 leading-relaxed font-medium">
+                  Please provide your details below to instantly calculate and display your personalized report.
+                </p>
+              </div>
+              
+              <form onSubmit={handleLeadSubmit} className="space-y-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-[#D4AF37] mb-1.5">
-                    Mobile Number
+                    Full Name
                   </label>
-                  <div className="flex gap-2">
-                    <select
-                      value={leadPhoneCode}
-                      onChange={(e) => setLeadPhoneCode(e.target.value)}
-                      className="px-2 py-3 rounded-xl bg-white/10 border border-white/25 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-                    >
-                      <option value="+91" className="text-slate-900">🇮🇳 +91</option>
-                      <option value="+1" className="text-slate-900">🇺🇸 +1</option>
-                      <option value="+44" className="text-slate-900">🇬🇧 +44</option>
-                      <option value="+971" className="text-slate-900">🇦🇪 +971</option>
-                    </select>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Tejendraa K Meena"
+                    value={leadName}
+                    onChange={(e) => setLeadName(e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#D4AF37] mb-1.5">
+                      Mobile Number
+                    </label>
+                    <div className="flex gap-2">
+                      <select
+                        value={leadPhoneCode}
+                        onChange={(e) => setLeadPhoneCode(e.target.value)}
+                        className="px-2 py-3 rounded-xl bg-white/10 border border-white/25 text-white text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
+                      >
+                        <option value="+91" className="text-slate-900">🇮🇳 +91</option>
+                        <option value="+1" className="text-slate-900">🇺🇸 +1</option>
+                        <option value="+44" className="text-slate-900">🇬🇧 +44</option>
+                        <option value="+971" className="text-slate-900">🇦🇪 +971</option>
+                      </select>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="9876543210"
+                        value={leadPhone}
+                        onChange={(e) => setLeadPhone(e.target.value)}
+                        className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#D4AF37] mb-1.5">
+                      Date of Birth
+                    </label>
                     <input
-                      type="tel"
+                      type="date"
                       required
-                      placeholder="9876543210"
-                      value={leadPhone}
-                      onChange={(e) => setLeadPhone(e.target.value)}
-                      className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
+                      value={leadDob}
+                      onChange={(e) => setLeadDob(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
                     />
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-wider text-[#D4AF37] mb-1.5">
-                    Date of Birth
-                  </label>
+                <div className="flex items-start gap-2.5 pt-2">
                   <input
-                    type="date"
-                    required
-                    value={leadDob}
-                    onChange={(e) => setLeadDob(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/25 text-white focus:outline-none focus:ring-2 focus:ring-[#D4AF37] text-sm font-medium"
+                    type="checkbox"
+                    id="leadAgree"
+                    checked={leadAgree}
+                    onChange={(e) => setLeadAgree(e.target.checked)}
+                    className="mt-1 w-4 h-4 text-[#D4AF37] focus:ring-[#D4AF37] rounded border-slate-300 cursor-pointer"
                   />
+                  <label htmlFor="leadAgree" className="text-[10px] text-slate-300 leading-tight">
+                    I agree to receive communication from NUMEROLOGY by TEJENDRAA K MEENA via text messaging. Communication will be occasional as required.
+                  </label>
                 </div>
-              </div>
 
-              <div className="flex items-start gap-2.5 pt-2">
-                <input
-                  type="checkbox"
-                  id="leadAgree"
-                  checked={leadAgree}
-                  onChange={(e) => setLeadAgree(e.target.checked)}
-                  className="mt-1 w-4 h-4 text-[#D4AF37] focus:ring-[#D4AF37] rounded border-slate-300 cursor-pointer"
-                />
-                <label htmlFor="leadAgree" className="text-[10px] text-slate-300 leading-tight">
-                  I agree to receive communication from NUMEROLOGY by TEJENDRA via text messaging. Communication will be occasional as required.
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                disabled={isCalculating}
-                className="w-full py-4 bg-[#D4AF37] hover:bg-[#c49f2b] text-[#1E3A8A] font-extrabold text-base rounded-xl transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
-              >
-                {isCalculating ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Sparkles className="w-5 h-5" />}
-                Unlock Free Instant Calculations
-              </button>
-            </form>
-          </div>
+                <button
+                  type="submit"
+                  disabled={isCalculating}
+                  className="w-full py-4 bg-[#D4AF37] hover:bg-[#c49f2b] text-[#1E3A8A] font-extrabold text-base rounded-xl transition-all shadow-lg cursor-pointer flex items-center justify-center gap-2"
+                >
+                  {isCalculating ? <RefreshCw className="w-5 h-5 animate-spin" /> : <Sparkles className="w-5 h-5" />}
+                  Unlock Free Instant Calculations
+                </button>
+              </form>
+            </div>
+          )
         ) : !result ? (
           <div className="bg-white/10 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/15 shadow-inner">
             
@@ -605,7 +739,7 @@ export default function FreeCalculators({ onBookConsultation, currentUser, setCu
                 onClick={onBookConsultation}
                 className="flex-1 py-3.5 px-6 rounded-xl bg-[#D4AF37] hover:bg-[#c49f2b] text-[#1E3A8A] font-extrabold text-sm transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
               >
-                Book Consultation with Tejendraa k meena
+                Book Consultation with Tejendraa K Meena
                 <ArrowRight className="w-4 h-4" />
               </button>
               <button

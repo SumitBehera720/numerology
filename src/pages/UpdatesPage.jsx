@@ -27,9 +27,9 @@ export default function UpdatesPage() {
             <h1 className="text-3xl sm:text-5xl font-extrabold font-cinzel text-white">
               Daily Reels & Updates
             </h1>
-            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-poppins">
-              Stay aligned with daily numerology tips, cosmic video reels, spelling correction rules, and executive articles written by Tejendraa k meena.
-            </p>
+             <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-poppins">
+               Stay aligned with daily numerology tips, cosmic video reels, spelling correction rules, and executive articles written by Tejendraa K Meena.
+             </p>
           </div>
         </div>
 

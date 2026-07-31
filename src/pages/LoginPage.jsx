@@ -26,7 +26,7 @@ export default function LoginPage({ setActiveTab, onOpenConsultation, setCurrent
       ) {
         if (cleanPass === 'admin123' || cleanPass === 'tejendra123') {
           const adminSession = {
-            name: 'Tejendraa k meena',
+            name: 'Tejendraa K Meena',
             email: 'tejendrameena7@gmail.com',
             phone: '8107241463',
             role: 'admin'

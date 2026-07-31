@@ -115,7 +115,7 @@ export default function PoliciesPage({ onOpenConsultation }) {
                 
                 <h4 className="text-base font-bold text-[#1E3A8A] font-cinzel pt-2">1. Scope of Consultations</h4>
                 <p>
-                  Numerology analysis, predictions, spelling modifications, and compatibility scores are provided as self-empowerment tools. They represent the intuitive analysis and corporate guidance of Tejendraa k meena and do not guarantee specific material outcomes.
+                  Numerology analysis, predictions, spelling modifications, and compatibility scores are provided as self-empowerment tools. They represent the intuitive analysis and corporate guidance of Tejendraa K Meena and do not guarantee specific material outcomes.
                 </p>
                 
                 <h4 className="text-base font-bold text-[#1E3A8A] font-cinzel pt-2">2. Professional Disclaimer</h4>

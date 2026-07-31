@@ -47,7 +47,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
 
               {/* Body Copy */}
               <p className="text-slate-200 text-sm sm:text-base leading-relaxed max-w-2xl font-poppins animate-text delay-400">
-                Unlock your cosmic blueprint with <strong>Tejendraa k meena</strong>. Transform your personal energy, commercial enterprise, career milestones, and relationship harmony with high-vibration Chaldean & Pythagorean numerology.
+                Unlock your cosmic blueprint with <strong>Tejendraa K Meena</strong>. Transform your personal energy, commercial enterprise, career milestones, and relationship harmony with high-vibration Chaldean & Pythagorean numerology.
               </p>
 
               {/* Action Buttons */}
@@ -99,7 +99,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 <div className="relative mb-4 flex justify-center">
                   <img 
                     src="/tejendra_new.jpeg" 
-                    alt="Tejendraa k meena - Master Numerologist" 
+                    alt="Tejendraa K Meena - Master Numerologist" 
                     className="w-28 h-28 sm:w-32 sm:h-32 rounded-3xl object-cover object-top border-4 border-[#D4AF37] shadow-xl"
                   />
                   <div className="absolute -bottom-2 bg-[#1E3A8A] text-[#D4AF37] text-[10px] font-extrabold px-3 py-0.5 rounded-full border border-[#D4AF37] shadow">
@@ -109,7 +109,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
 
                 <div className="text-center pt-2">
                   <h3 className="text-2xl font-extrabold font-cinzel text-[#1E3A8A]">
-                    Tejendraa k meena
+                    Tejendraa K Meena
                   </h3>
                   <p className="text-xs font-bold text-[#D4AF37] uppercase tracking-widest mt-1">
                     Master Numerologist & Business Strategist
@@ -169,7 +169,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 <div className="absolute -inset-1.5 bg-gradient-to-r from-[#D4AF37] to-[#1E3A8A] rounded-3xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200" />
                 <img 
                   src="/tejendra_wisdom.jpeg" 
-                  alt="Tejendraa k meena - Wisdom, Intuition, and Spiritual Guidance" 
+                  alt="Tejendraa K Meena - Wisdom, Intuition, and Spiritual Guidance" 
                   className="relative rounded-3xl object-cover border-4 border-white shadow-2xl w-full aspect-[4/5] object-center"
                 />
               </div>
@@ -184,7 +184,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 Wisdom, Intuition & <br />Spiritual Guidance
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Connect with the deep cosmic frequencies of your life blueprint. Under the guidance of **Tejendraa k meena**, discover how numbers reveal hidden planetary vibrations that govern your daily actions, commercial ventures, and relationship harmony.
+                Connect with the deep cosmic frequencies of your life blueprint. Under the guidance of **Tejendraa K Meena**, discover how numbers reveal hidden planetary vibrations that govern your daily actions, commercial ventures, and relationship harmony.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-xs font-semibold text-slate-800">
@@ -334,6 +334,9 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                         {rep.originalPrice}
                       </span>
                       <span className="text-lg font-extrabold font-cinzel text-[#1E3A8A] leading-none">{rep.price}</span>
+                      <span className="text-[8px] text-[#D4AF37] font-black uppercase tracking-wider mt-1.5 animate-pulse">
+                        Limited Period Offer
+                      </span>
                     </div>
                     <button
                       onClick={() => onOpenConsultation({ service: rep.title })}
@@ -421,7 +424,7 @@ export default function HomePage({ onOpenConsultation, setActiveTab, currentUser
                 Book An Appointment
               </h2>
               <p className="text-slate-600 text-sm max-w-xl mx-auto mt-2 font-medium">
-                Select your preferred meeting type and duration to schedule a consultation slot with Tejendraa k meena.
+                Select your preferred meeting type and duration to schedule a consultation slot with Tejendraa K Meena.
               </p>
             </div>
           </ScrollReveal>
